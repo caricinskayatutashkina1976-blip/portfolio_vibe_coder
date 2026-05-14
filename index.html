@@ -7,37 +7,41 @@
   <title>Наталья Царицинская — Vibe Coder &amp; AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f4f1eb;
-      --bg-elevated: #fffcf7;
-      --text: #1c1915;
-      --text-muted: #5c564c;
-      --accent-green: #1e4a3c;
-      --accent-green-soft: #2d6b56;
-      --accent-amber: #b8860b;
-      --accent-amber-glow: rgba(184, 134, 11, 0.35);
-      --border: rgba(30, 74, 60, 0.12);
-      --shadow: 0 24px 80px rgba(28, 25, 21, 0.12);
+      --bg: #f7ede4;
+      --bg-elevated: #fff8f2;
+      --text: #3a2426;
+      --text-muted: #7d5f58;
+      --accent-wine: #6b3340;
+      --accent-wine-deep: #4f252f;
+      --accent-terracotta: #c76f5b;
+      --accent-terracotta-soft: #d48978;
+      --accent-caramel: #b8926a;
+      --accent-glow: rgba(200, 160, 118, 0.38);
+      --border: rgba(107, 51, 64, 0.14);
+      --shadow: 0 24px 80px rgba(74, 40, 45, 0.1);
       --radius-lg: 28px;
       --radius-md: 16px;
-      --font-display: "Syne", system-ui, sans-serif;
+      --font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
       --font-body: "Newsreader", Georgia, serif;
       --grain-opacity: 0.06;
     }
 
     [data-theme="dark"] {
-      --bg: #121110;
-      --bg-elevated: #1a1917;
-      --text: #f0ebe3;
-      --text-muted: #a39a8c;
-      --accent-green: #4ade9a;
-      --accent-green-soft: #6ee7b7;
-      --accent-amber: #e8c547;
-      --accent-amber-glow: rgba(232, 197, 71, 0.2);
-      --border: rgba(255, 252, 247, 0.08);
-      --shadow: 0 28px 100px rgba(0, 0, 0, 0.45);
+      --bg: #1a1315;
+      --bg-elevated: #241a1d;
+      --text: #f4e9e4;
+      --text-muted: #c9a99e;
+      --accent-wine: #e8c4c8;
+      --accent-wine-deep: #c49aa0;
+      --accent-terracotta: #e59886;
+      --accent-terracotta-soft: #f0b5a8;
+      --accent-caramel: #d9b896;
+      --accent-glow: rgba(217, 184, 150, 0.18);
+      --border: rgba(244, 233, 228, 0.1);
+      --shadow: 0 28px 100px rgba(0, 0, 0, 0.42);
       --grain-opacity: 0.04;
     }
 
@@ -55,11 +59,34 @@
       html {
         scroll-behavior: auto;
       }
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
+      .mesh-bg,
+      .hero-visual::before {
+        animation: none !important;
+      }
+      .eyebrow,
+      .hero h1,
+      .hero .lead,
+      .cta-row,
+      .hero-visual {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      section[data-scroll] .about-text,
+      section[data-scroll] .about-side,
+      section[data-scroll] > .wrap > .section-label,
+      section[data-scroll] > .wrap > h2,
+      section[data-scroll] .services li,
+      section[data-scroll] .project-card,
+      section[data-scroll] .tool-pill,
+      section[data-scroll] .contact-links a {
+        opacity: 1 !important;
+        transform: none !important;
+        transition-duration: 0.01ms !important;
+      }
+      .site-footer {
+        opacity: 1 !important;
+        transform: none !important;
         transition-duration: 0.01ms !important;
       }
     }
@@ -90,32 +117,46 @@
       mix-blend-mode: overlay;
     }
 
+    @keyframes mesh-drift {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+      33% {
+        transform: translate(-1.5%, 1.2%) scale(1.02);
+      }
+      66% {
+        transform: translate(1.2%, -0.8%) scale(1.015);
+      }
+    }
+
     .mesh-bg {
       position: fixed;
       inset: -20%;
       z-index: -2;
       background:
-        radial-gradient(ellipse 80% 50% at 85% 15%, var(--accent-amber-glow), transparent 55%),
-        radial-gradient(ellipse 60% 45% at 10% 80%, rgba(30, 74, 60, 0.18), transparent 50%),
+        radial-gradient(ellipse 80% 50% at 85% 15%, var(--accent-glow), transparent 55%),
+        radial-gradient(ellipse 60% 45% at 10% 80%, rgba(107, 51, 64, 0.14), transparent 50%),
         radial-gradient(ellipse 50% 40% at 50% 50%, transparent, var(--bg));
       transition: background 0.6s ease;
+      animation: mesh-drift 32s ease-in-out infinite;
     }
 
     [data-theme="dark"] .mesh-bg {
       background:
-        radial-gradient(ellipse 70% 45% at 80% 10%, rgba(232, 197, 71, 0.08), transparent 50%),
-        radial-gradient(ellipse 55% 40% at 15% 75%, rgba(74, 222, 154, 0.06), transparent 45%),
+        radial-gradient(ellipse 70% 45% at 80% 10%, rgba(217, 184, 150, 0.1), transparent 50%),
+        radial-gradient(ellipse 55% 40% at 15% 75%, rgba(199, 111, 91, 0.08), transparent 45%),
         radial-gradient(ellipse 50% 40% at 50% 50%, transparent, var(--bg));
     }
 
     a {
-      color: var(--accent-green-soft);
+      color: var(--accent-terracotta);
       text-decoration-thickness: 1px;
       text-underline-offset: 0.2em;
     }
 
     a:hover {
-      color: var(--accent-amber);
+      color: var(--accent-caramel);
     }
 
     .wrap {
@@ -132,6 +173,16 @@
       backdrop-filter: blur(12px);
       background: color-mix(in srgb, var(--bg) 82%, transparent);
       border-bottom: 1px solid var(--border);
+      transition: padding 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    }
+
+    .site-header.is-scrolled {
+      padding: 0.55rem 0;
+      box-shadow: 0 10px 40px rgba(74, 40, 45, 0.07);
+    }
+
+    [data-theme="dark"] .site-header.is-scrolled {
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.35);
     }
 
     .site-header .inner {
@@ -142,23 +193,23 @@
     }
 
     .logo {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text);
     }
 
     .logo span {
-      color: var(--accent-green-soft);
+      color: var(--accent-terracotta);
     }
 
     .theme-toggle {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       padding: 0.65rem 1rem;
       border-radius: 999px;
@@ -172,11 +223,11 @@
     .theme-toggle:hover {
       transform: translateY(-1px);
       box-shadow: var(--shadow);
-      border-color: var(--accent-green-soft);
+      border-color: var(--accent-terracotta);
     }
 
     .theme-toggle:focus-visible {
-      outline: 2px solid var(--accent-amber);
+      outline: 2px solid var(--accent-caramel);
       outline-offset: 3px;
     }
 
@@ -203,23 +254,31 @@
     }
 
     .eyebrow {
-      font-family: var(--font-display);
-      font-size: 0.72rem;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent-green-soft);
+      color: var(--accent-terracotta);
       margin-bottom: 1.25rem;
       opacity: 0;
       animation: rise 0.8s ease forwards 0.1s;
     }
 
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-style: normal;
+    }
+
     .hero h1 {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(1.85rem, 4.2vw, 2.85rem);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(2.1rem, 4.5vw, 3.15rem);
+      line-height: 1.08;
+      letter-spacing: -0.015em;
       margin: 0 0 1.25rem;
       opacity: 0;
       animation: rise 0.85s ease forwards 0.25s;
@@ -254,10 +313,10 @@
     }
 
     .btn {
-      font-family: var(--font-display);
-      font-size: 0.8rem;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       padding: 1rem 1.5rem;
       border-radius: 999px;
@@ -271,25 +330,25 @@
     }
 
     .btn:focus-visible {
-      outline: 2px solid var(--accent-amber);
+      outline: 2px solid var(--accent-caramel);
       outline-offset: 3px;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-green) 0%, #163d32 100%);
-      color: #faf8f4;
-      box-shadow: 0 12px 32px rgba(30, 74, 60, 0.28);
+      background: linear-gradient(135deg, var(--accent-wine) 0%, var(--accent-wine-deep) 100%);
+      color: #fff8f4;
+      box-shadow: 0 12px 32px rgba(79, 37, 47, 0.28);
     }
 
     [data-theme="dark"] .btn-primary {
-      background: linear-gradient(135deg, var(--accent-green-soft), #2d8a62);
-      color: #0f1412;
-      box-shadow: 0 12px 40px rgba(74, 222, 154, 0.25);
+      background: linear-gradient(135deg, var(--accent-terracotta-soft), var(--accent-wine));
+      color: #1a1315;
+      box-shadow: 0 12px 40px rgba(199, 111, 91, 0.32);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 44px rgba(30, 74, 60, 0.35);
+      box-shadow: 0 16px 44px rgba(79, 37, 47, 0.38);
     }
 
     .btn-ghost {
@@ -300,7 +359,7 @@
     }
 
     .btn-ghost:hover {
-      border-color: var(--accent-amber);
+      border-color: var(--accent-caramel);
       transform: translateY(-2px);
     }
 
@@ -308,6 +367,18 @@
       position: relative;
       opacity: 0;
       animation: rise 1s ease forwards 0.35s;
+    }
+
+    @keyframes hero-glow {
+      0%,
+      100% {
+        opacity: 0.38;
+        transform: rotate(-4deg) scale(1);
+      }
+      50% {
+        opacity: 0.52;
+        transform: rotate(-3deg) scale(1.05);
+      }
     }
 
     .hero-visual::before {
@@ -318,10 +389,11 @@
       right: -6%;
       bottom: -8%;
       border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, var(--accent-amber), transparent 60%);
+      background: linear-gradient(145deg, var(--accent-caramel), transparent 60%);
       opacity: 0.45;
       z-index: 0;
       transform: rotate(-4deg);
+      animation: hero-glow 8s ease-in-out infinite;
     }
 
     .hero-photo-wrap {
@@ -343,10 +415,14 @@
       display: block;
       width: 100%;
       height: auto;
-      vertical-align: middle;
       aspect-ratio: 4 / 5;
       object-fit: cover;
       object-position: center top;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hero-visual:hover .hero-photo-wrap img {
+      transform: scale(1.03);
     }
 
     .photo-caption {
@@ -354,7 +430,7 @@
       left: 1rem;
       bottom: 1rem;
       z-index: 2;
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -373,27 +449,26 @@
     }
 
     section h2 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
-      letter-spacing: -0.02em;
+      font-size: clamp(1.65rem, 3.2vw, 2.4rem);
+      line-height: 1.14;
+      letter-spacing: 0.01em;
       margin: 0 0 1.5rem;
-      max-width: 22ch;
+      max-width: 24ch;
     }
 
     .section-label {
-      font-family: var(--font-display);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent-amber);
+      color: var(--accent-caramel);
       margin-bottom: 0.75rem;
     }
 
     /* About */
     .about {
-      background: color-mix(in srgb, var(--bg-elevated) 96%, var(--accent-green) 4%);
+      background: color-mix(in srgb, var(--bg-elevated) 96%, var(--accent-wine) 4%);
       border-block: 1px solid var(--border);
     }
 
@@ -449,7 +524,7 @@
       width: 64px;
       height: 4px;
       border-radius: 2px;
-      background: linear-gradient(90deg, var(--accent-green-soft), var(--accent-amber));
+      background: linear-gradient(90deg, var(--accent-terracotta), var(--accent-caramel));
       margin-bottom: 1.5rem;
     }
 
@@ -464,9 +539,10 @@
     }
 
     .services li {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
+      line-height: 1.25;
       padding: 1.25rem 1.35rem;
       border-radius: var(--radius-md);
       background: var(--bg-elevated);
@@ -476,12 +552,12 @@
 
     .services li::before {
       content: "→";
-      color: var(--accent-amber);
+      color: var(--accent-caramel);
       margin-right: 0.6rem;
     }
 
     .services li:hover {
-      border-color: var(--accent-green-soft);
+      border-color: var(--accent-terracotta);
       transform: translateY(-3px);
     }
 
@@ -515,19 +591,19 @@
       right: 0;
       width: 120px;
       height: 120px;
-      background: radial-gradient(circle at top right, var(--accent-amber-glow), transparent 70%);
+      background: radial-gradient(circle at top right, var(--accent-glow), transparent 70%);
       pointer-events: none;
     }
 
     .project-card:hover {
       box-shadow: var(--shadow);
-      border-color: color-mix(in srgb, var(--accent-green-soft) 40%, var(--border));
+      border-color: color-mix(in srgb, var(--accent-terracotta) 40%, var(--border));
     }
 
     .project-card h3 {
-      font-family: var(--font-display);
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.28rem;
+      line-height: 1.2;
       margin: 0 0 0.6rem;
       position: relative;
       z-index: 1;
@@ -567,7 +643,7 @@
     }
 
     .tool-pill {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.08em;
@@ -592,7 +668,7 @@
     }
 
     .contact-links a {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-weight: 600;
       font-size: 0.95rem;
       display: flex;
@@ -608,12 +684,12 @@
     }
 
     .contact-links a span:last-child {
-      color: var(--accent-amber);
+      color: var(--accent-caramel);
       font-size: 1.1rem;
     }
 
     .contact-links a:hover {
-      border-color: var(--accent-green-soft);
+      border-color: var(--accent-terracotta);
       transform: translateX(6px);
       color: var(--text);
     }
@@ -624,19 +700,259 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .site-footer.is-inview {
+      opacity: 1;
+      transform: none;
     }
 
     .site-footer strong {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       color: var(--text);
       font-weight: 600;
+    }
+
+    /* Появление при скролле (Intersection Observer → класс .is-inview) */
+    section[data-scroll]:not(.is-inview) .about-text,
+    section[data-scroll]:not(.is-inview) .about-side {
+      opacity: 0;
+      transform: translateY(36px);
+    }
+
+    section[data-scroll] .about-text,
+    section[data-scroll] .about-side {
+      transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    section[data-scroll].is-inview .about-text,
+    section[data-scroll].is-inview .about-side {
+      opacity: 1;
+      transform: none;
+    }
+
+    section[data-scroll].is-inview .about-side {
+      transition-delay: 0.16s;
+    }
+
+    section#services:not(.is-inview) > .section-label,
+    section#services:not(.is-inview) > h2,
+    section#services:not(.is-inview) > ul > li {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+
+    section#services > .section-label,
+    section#services > h2,
+    section#services > ul > li {
+      transition:
+        opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    section#services.is-inview > .section-label {
+      transition-delay: 0s;
+    }
+
+    section#services.is-inview > h2 {
+      transition-delay: 0.08s;
+    }
+
+    section#services.is-inview > ul > li:nth-child(1) {
+      transition-delay: 0.12s;
+    }
+
+    section#services.is-inview > ul > li:nth-child(2) {
+      transition-delay: 0.18s;
+    }
+
+    section#services.is-inview > ul > li:nth-child(3) {
+      transition-delay: 0.24s;
+    }
+
+    section#services.is-inview > ul > li:nth-child(4) {
+      transition-delay: 0.3s;
+    }
+
+    section#services.is-inview > ul > li:nth-child(5) {
+      transition-delay: 0.36s;
+    }
+
+    section#services.is-inview > ul > li:nth-child(6) {
+      transition-delay: 0.42s;
+    }
+
+    section#services.is-inview > .section-label,
+    section#services.is-inview > h2,
+    section#services.is-inview > ul > li {
+      opacity: 1;
+      transform: none;
+    }
+
+    section#projects:not(.is-inview) > .section-label,
+    section#projects:not(.is-inview) > h2,
+    section#projects:not(.is-inview) .project-card {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    section#projects > .section-label,
+    section#projects > h2,
+    section#projects .project-card {
+      transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    section#projects.is-inview > .section-label {
+      transition-delay: 0s;
+    }
+
+    section#projects.is-inview > h2 {
+      transition-delay: 0.08s;
+    }
+
+    section#projects.is-inview .project-card:nth-child(1) {
+      transition-delay: 0.12s;
+    }
+
+    section#projects.is-inview .project-card:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    section#projects.is-inview .project-card:nth-child(3) {
+      transition-delay: 0.28s;
+    }
+
+    section#projects.is-inview .project-card:nth-child(4) {
+      transition-delay: 0.36s;
+    }
+
+    section#projects.is-inview > .section-label,
+    section#projects.is-inview > h2,
+    section#projects.is-inview .project-card {
+      opacity: 1;
+      transform: none;
+    }
+
+    section#tools:not(.is-inview) > .section-label,
+    section#tools:not(.is-inview) > h2,
+    section#tools:not(.is-inview) .tool-pill {
+      opacity: 0;
+      transform: translateY(18px) scale(0.97);
+    }
+
+    section#tools > .section-label,
+    section#tools > h2,
+    section#tools .tool-pill {
+      transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    section#tools.is-inview > .section-label {
+      transition-delay: 0s;
+    }
+
+    section#tools.is-inview > h2 {
+      transition-delay: 0.06s;
+    }
+
+    section#tools.is-inview .tool-pill:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    section#tools.is-inview .tool-pill:nth-child(2) {
+      transition-delay: 0.14s;
+    }
+
+    section#tools.is-inview .tool-pill:nth-child(3) {
+      transition-delay: 0.18s;
+    }
+
+    section#tools.is-inview .tool-pill:nth-child(4) {
+      transition-delay: 0.22s;
+    }
+
+    section#tools.is-inview .tool-pill:nth-child(5) {
+      transition-delay: 0.26s;
+    }
+
+    section#tools.is-inview .tool-pill:nth-child(6) {
+      transition-delay: 0.3s;
+    }
+
+    section#tools.is-inview .tool-pill:nth-child(7) {
+      transition-delay: 0.34s;
+    }
+
+    section#tools.is-inview .tool-pill:nth-child(8) {
+      transition-delay: 0.38s;
+    }
+
+    section#tools.is-inview > .section-label,
+    section#tools.is-inview > h2,
+    section#tools.is-inview .tool-pill {
+      opacity: 1;
+      transform: none;
+    }
+
+    section#contacts:not(.is-inview) > .section-label,
+    section#contacts:not(.is-inview) > h2,
+    section#contacts:not(.is-inview) .contact-links a {
+      opacity: 0;
+      transform: translateX(-16px);
+    }
+
+    section#contacts > .section-label,
+    section#contacts > h2,
+    section#contacts .contact-links a {
+      transition:
+        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    section#contacts.is-inview > .section-label {
+      transition-delay: 0s;
+    }
+
+    section#contacts.is-inview > h2 {
+      transition-delay: 0.07s;
+    }
+
+    section#contacts.is-inview .contact-links a:nth-child(1) {
+      transition-delay: 0.12s;
+    }
+
+    section#contacts.is-inview .contact-links a:nth-child(2) {
+      transition-delay: 0.18s;
+    }
+
+    section#contacts.is-inview .contact-links a:nth-child(3) {
+      transition-delay: 0.24s;
+    }
+
+    section#contacts.is-inview .contact-links a:nth-child(4) {
+      transition-delay: 0.3s;
+    }
+
+    section#contacts.is-inview > .section-label,
+    section#contacts.is-inview > h2,
+    section#contacts.is-inview .contact-links a {
+      opacity: 1;
+      transform: none;
     }
   </style>
 </head>
 <body>
   <div class="mesh-bg" aria-hidden="true"></div>
 
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
     <div class="wrap inner">
       <p class="logo">Наталья <span>Царицинская</span></p>
       <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Переключить тему">
@@ -672,7 +988,7 @@
       </div>
     </section>
 
-    <section class="about" id="about">
+    <section class="about" id="about" data-scroll>
       <div class="wrap about-grid">
         <div class="about-text">
           <p class="section-label">Обо мне</p>
@@ -697,7 +1013,7 @@
       </div>
     </section>
 
-    <section class="services wrap" id="services">
+    <section class="services wrap" id="services" data-scroll>
       <p class="section-label">Направления</p>
       <h2>Что я делаю</h2>
       <ul>
@@ -710,7 +1026,7 @@
       </ul>
     </section>
 
-    <section class="projects wrap" id="projects">
+    <section class="projects wrap" id="projects" data-scroll>
       <p class="section-label">Портфолио</p>
       <h2>Проекты</h2>
       <div class="projects-grid">
@@ -733,7 +1049,7 @@
       </div>
     </section>
 
-    <section class="tools wrap" id="tools">
+    <section class="tools wrap" id="tools" data-scroll>
       <p class="section-label">Стек</p>
       <h2>Инструменты</h2>
       <div class="tools-marquee" role="list">
@@ -748,7 +1064,7 @@
       </div>
     </section>
 
-    <section class="contacts wrap" id="contacts">
+    <section class="contacts wrap" id="contacts" data-scroll>
       <p class="section-label">Связь</p>
       <h2>Контакты</h2>
       <nav class="contact-links" aria-label="Контакты и соцсети">
@@ -760,7 +1076,7 @@
     </section>
   </main>
 
-  <footer class="site-footer wrap">
+  <footer class="site-footer wrap" id="siteFooter">
     <p><strong>Наталья Царицинская</strong> · vibe coder · AI · бизнес</p>
   </footer>
 
@@ -795,6 +1111,53 @@
           localStorage.setItem(storageKey, next);
         } catch (e) {}
       });
+    })();
+
+    (function () {
+      var header = document.getElementById("siteHeader");
+      var footer = document.getElementById("siteFooter");
+      var sections = document.querySelectorAll("section[data-scroll]");
+      var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function updateHeader() {
+        if (!header) return;
+        header.classList.toggle("is-scrolled", window.scrollY > 44);
+      }
+
+      updateHeader();
+      window.addEventListener("scroll", updateHeader, { passive: true });
+
+      if (reduceMotion) {
+        sections.forEach(function (el) {
+          el.classList.add("is-inview");
+        });
+        if (footer) footer.classList.add("is-inview");
+        return;
+      }
+
+      if (!("IntersectionObserver" in window)) {
+        sections.forEach(function (el) {
+          el.classList.add("is-inview");
+        });
+        if (footer) footer.classList.add("is-inview");
+        return;
+      }
+
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-inview");
+            io.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -10% 0px" }
+      );
+
+      sections.forEach(function (el) {
+        io.observe(el);
+      });
+      if (footer) io.observe(footer);
     })();
   </script>
 </body>
