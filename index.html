@@ -76,7 +76,7 @@
       section[data-scroll] > .wrap > .section-h2,
       section[data-scroll] .magic-bento-card,
       section[data-scroll] .project-card,
-      section[data-scroll] .testimonial-card,
+      section[data-scroll] .testimonials-deck-wrap,
       section[data-scroll] .testimonials-intro,
       section[data-scroll] .tool-pill,
       section[data-scroll] .contact-links a {
@@ -305,9 +305,14 @@
       line-height: 1.08;
       letter-spacing: -0.015em;
       margin: 0 0 1.25rem;
+      hyphens: manual;
+      -webkit-hyphens: manual;
+      word-break: normal;
+      overflow-wrap: normal;
+      text-wrap: balance;
     }
 
-    .hero h1 .hero-split-char {
+    .hero h1 .hero-split-word {
       display: inline-block;
       will-change: transform, opacity;
     }
@@ -317,6 +322,10 @@
       color: var(--text-muted);
       margin: 0 0 2rem;
       max-width: 32ch;
+      hyphens: manual;
+      -webkit-hyphens: manual;
+      word-break: normal;
+      overflow-wrap: normal;
       opacity: 0;
       animation: rise 0.85s ease forwards 0.4s;
     }
@@ -906,23 +915,200 @@
       line-height: 1.55;
     }
 
-    .testimonials-grid {
-      display: grid;
+    .testimonials-deck-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       gap: 1.25rem;
       padding-top: 0.25rem;
-      grid-template-columns: 1fr;
     }
 
-    @media (min-width: 640px) {
-      .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .testimonials-deck {
+      position: relative;
+      width: min(340px, 100%);
+      height: clamp(380px, 78vw, 440px);
+      touch-action: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .testimonials-deck {
+        touch-action: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .testimonial-card.testimonial-card--deck {
+        position: relative;
+        left: auto;
+        top: auto;
+        height: auto;
+        max-height: none;
+        min-height: 10.5rem;
+        width: 100%;
+        max-width: 36rem;
+        margin-inline: auto;
+        transform: none !important;
+        pointer-events: auto;
+        cursor: default;
+        margin-bottom: 0;
+      }
+
+      .testimonial-card.testimonial-card--deck[data-position="front"] {
+        order: 0;
+      }
+
+      .testimonial-card.testimonial-card--deck[data-position="middle"] {
+        order: 1;
+      }
+
+      .testimonial-card.testimonial-card--deck[data-position="back"] {
+        order: 2;
       }
     }
 
-    @media (min-width: 1024px) {
-      .testimonials-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .testimonial-card.testimonial-card--deck {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 440px;
+      min-height: 0;
+      margin: 0;
+      padding: 1.35rem 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.65rem;
+      --drag-x: 0px;
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease,
+        border-color 0.2s ease;
+      cursor: default;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .testimonial-card.testimonial-card--deck.is-dragging {
+      transition:
+        box-shadow 0.3s ease,
+        border-color 0.2s ease;
+    }
+
+    .testimonial-card.testimonial-card--deck[data-position="front"] {
+      z-index: 3;
+      transform: rotate(-5.5deg) translateX(var(--drag-x));
+      cursor: grab;
+    }
+
+    .testimonial-card.testimonial-card--deck[data-position="front"]:active {
+      cursor: grabbing;
+    }
+
+    .testimonial-card.testimonial-card--deck[data-position="middle"] {
+      z-index: 2;
+      transform: rotate(0deg) translateX(calc(10% + 8px));
+    }
+
+    .testimonial-card.testimonial-card--deck[data-position="back"] {
+      z-index: 1;
+      transform: rotate(5.5deg) translateX(calc(20% + 16px));
+    }
+
+    .testimonial-card.testimonial-card--deck:not([data-position="front"]) {
+      pointer-events: none;
+    }
+
+    .testimonial-card.testimonial-card--deck[data-position="front"]:hover {
+      box-shadow: var(--shadow);
+      border-color: color-mix(in srgb, var(--accent-terracotta) 40%, var(--border));
+    }
+
+    .testimonial-card__avatar {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 50%;
+      margin: 0.15rem auto 0.35rem;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      border: 2px solid var(--border);
+      background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--accent-terracotta) 22%, var(--bg-elevated)),
+        var(--bg-elevated)
+      );
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    [data-theme="dark"] .testimonial-card__avatar {
+      background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--accent-terracotta-soft) 18%, var(--bg-elevated)),
+        var(--bg-elevated)
+      );
+    }
+
+    .testimonials-deck-hint {
+      margin: 0;
+      max-width: 28rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .testimonials-deck-next {
+      margin-top: -0.25rem;
+    }
+
+    .testimonial-card.testimonial-card--deck .magic-bento-card__label {
+      margin-bottom: 0;
+      align-self: center;
+    }
+
+    .testimonial-card.testimonial-card--deck .testimonial-card__quote {
+      flex: 1;
+      min-height: 0;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 7;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .testimonial-card.testimonial-card--deck .testimonial-card__quote {
+        display: block;
+        -webkit-line-clamp: unset;
+        overflow: visible;
       }
+    }
+
+    .testimonial-card.testimonial-card--deck .testimonial-card__meta {
+      margin-top: auto;
+      padding-top: 0.85rem;
+      text-align: center;
+      align-items: center;
+    }
+
+    .testimonial-card.testimonial-card--deck .testimonial-card__author {
+      font-size: 0.95rem;
+    }
+
+    .testimonial-card.testimonial-card--deck .testimonial-card__role {
+      font-size: 0.78rem;
     }
 
     .testimonial-card {
@@ -1192,14 +1378,14 @@
 
     section#testimonials:not(.is-inview) > .section-h2,
     section#testimonials:not(.is-inview) .testimonials-intro,
-    section#testimonials:not(.is-inview) .testimonial-card {
+    section#testimonials:not(.is-inview) .testimonials-deck-wrap {
       opacity: 0;
       transform: translateY(26px);
     }
 
     section#testimonials > .section-h2,
     section#testimonials .testimonials-intro,
-    section#testimonials .testimonial-card {
+    section#testimonials .testimonials-deck-wrap {
       transition:
         opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1213,21 +1399,13 @@
       transition-delay: 0.06s;
     }
 
-    section#testimonials.is-inview .testimonial-card:nth-child(1) {
+    section#testimonials.is-inview .testimonials-deck-wrap {
       transition-delay: 0.12s;
-    }
-
-    section#testimonials.is-inview .testimonial-card:nth-child(2) {
-      transition-delay: 0.2s;
-    }
-
-    section#testimonials.is-inview .testimonial-card:nth-child(3) {
-      transition-delay: 0.28s;
     }
 
     section#testimonials.is-inview > .section-h2,
     section#testimonials.is-inview .testimonials-intro,
-    section#testimonials.is-inview .testimonial-card {
+    section#testimonials.is-inview .testimonials-deck-wrap {
       opacity: 1;
       transform: none;
     }
@@ -1538,40 +1716,51 @@
       <p class="testimonials-intro">
         Коротко о том, как AI, автоматизация и аккуратные digital-решения помогают в работе и бизнесе.
       </p>
-      <div class="testimonials-grid">
-        <figure class="testimonial-card">
-          <span class="magic-bento-card__label">Отзыв</span>
-          <blockquote class="testimonial-card__quote">
-            Консультация по&nbsp;AI-ассистенту и понятное ТЗ помогли навести порядок в&nbsp;ответах клиентам. Без перегруза
-            техническими терминами.
-          </blockquote>
-          <figcaption class="testimonial-card__meta">
-            <cite class="testimonial-card__author">Елена М.</cite>
-            <span class="testimonial-card__role">розничная точка · Ханымей</span>
-          </figcaption>
-        </figure>
-        <figure class="testimonial-card">
-          <span class="magic-bento-card__label">Отзыв</span>
-          <blockquote class="testimonial-card__quote">
-            Нужна была маленькая витрина и расчёт — получили аккуратный мини-сервис и понятную логику. Быстро внедрили без
-            лишней бюрократии.
-          </blockquote>
-          <figcaption class="testimonial-card__meta">
-            <cite class="testimonial-card__author">ИП «Север-Принт»</cite>
-            <span class="testimonial-card__role">3D-печать и заказы онлайн</span>
-          </figcaption>
-        </figure>
-        <figure class="testimonial-card">
-          <span class="magic-bento-card__label">Отзыв</span>
-          <blockquote class="testimonial-card__quote">
-            Понравился подход vibe-coder: идею разложили по&nbsp;шагам, связали контент и инструменты. Хочется продолжать
-            в&nbsp;том же темпе.
-          </blockquote>
-          <figcaption class="testimonial-card__meta">
-            <cite class="testimonial-card__author">Марина К.</cite>
-            <span class="testimonial-card__role">нишевый бренд и соцсети</span>
-          </figcaption>
-        </figure>
+      <div class="testimonials-deck-wrap">
+        <div class="testimonials-deck" id="testimonialsDeck" aria-live="polite">
+          <figure class="testimonial-card testimonial-card--deck" data-position="front">
+            <span class="magic-bento-card__label">Отзыв</span>
+            <div class="testimonial-card__avatar" aria-hidden="true">ЕМ</div>
+            <blockquote class="testimonial-card__quote">
+              Консультация по&nbsp;AI-ассистенту и понятное ТЗ помогли навести порядок в&nbsp;ответах клиентам. Без
+              перегруза техническими терминами.
+            </blockquote>
+            <figcaption class="testimonial-card__meta">
+              <cite class="testimonial-card__author">Елена М.</cite>
+              <span class="testimonial-card__role">розничная точка · Ханымей</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card testimonial-card--deck" data-position="middle">
+            <span class="magic-bento-card__label">Отзыв</span>
+            <div class="testimonial-card__avatar" aria-hidden="true">ИП</div>
+            <blockquote class="testimonial-card__quote">
+              Нужна была маленькая витрина и расчёт — получили аккуратный мини-сервис и понятную логику. Быстро внедрили
+              без лишней бюрократии.
+            </blockquote>
+            <figcaption class="testimonial-card__meta">
+              <cite class="testimonial-card__author">ИП «Север-Принт»</cite>
+              <span class="testimonial-card__role">3D-печать и заказы онлайн</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card testimonial-card--deck" data-position="back">
+            <span class="magic-bento-card__label">Отзыв</span>
+            <div class="testimonial-card__avatar" aria-hidden="true">МК</div>
+            <blockquote class="testimonial-card__quote">
+              Понравился подход vibe-coder: идею разложили по&nbsp;шагам, связали контент и инструменты. Хочется
+              продолжать в&nbsp;том же темпе.
+            </blockquote>
+            <figcaption class="testimonial-card__meta">
+              <cite class="testimonial-card__author">Марина К.</cite>
+              <span class="testimonial-card__role">нишевый бренд и соцсети</span>
+            </figcaption>
+          </figure>
+        </div>
+        <p class="testimonials-deck-hint">
+          Потяните верхнюю карточку влево, как в колоде, или нажмите кнопку — появится следующий отзыв.
+        </p>
+        <button type="button" class="btn btn-ghost testimonials-deck-next" id="testimonialsDeckNext">
+          Следующий отзыв
+        </button>
       </div>
     </section>
 
@@ -1614,7 +1803,7 @@
   <script>
     (function () {
       /** Как в React: threshold 0.1, rootMargin −100px (нижний отступ корня — надёжнее для hero). */
-      var SPLIT_STAGGER = 0.032;
+      var SPLIT_STAGGER = 0.055;
       var SPLIT_DURATION = 0.62;
       var SPLIT_EASE = "power2.out";
       var IO_THRESHOLD = 0.1;
@@ -1628,21 +1817,27 @@
       var fullText = h1.textContent.trim();
       h1.setAttribute("aria-label", fullText);
 
-      function splitIntoChars(el, text) {
+      function splitIntoWords(el, text) {
         el.textContent = "";
-        Array.from(text).forEach(function (ch) {
+        var parts = text.split(/(\s+)/);
+        parts.forEach(function (part) {
+          if (part === "") return;
+          if (/^\s+$/.test(part)) {
+            el.appendChild(document.createTextNode(part));
+            return;
+          }
           var span = document.createElement("span");
-          span.className = "hero-split-char";
+          span.className = "hero-split-word";
           span.setAttribute("aria-hidden", "true");
-          span.textContent = ch === " " ? "\u00A0" : ch;
+          span.textContent = part;
           el.appendChild(span);
         });
-        return el.querySelectorAll(".hero-split-char");
+        return el.querySelectorAll(".hero-split-word");
       }
 
-      function playHeroHeading(chars) {
+      function playHeroHeading(words) {
         gsap.fromTo(
-          chars,
+          words,
           { opacity: 0, y: 12 },
           {
             opacity: 1,
@@ -1656,11 +1851,11 @@
       }
 
       function init() {
-        var chars = splitIntoChars(h1, fullText);
-        if (!chars.length) return;
+        var words = splitIntoWords(h1, fullText);
+        if (!words.length) return;
 
         if (!("IntersectionObserver" in window)) {
-          playHeroHeading(chars);
+          playHeroHeading(words);
           return;
         }
 
@@ -1671,7 +1866,7 @@
           try {
             io.disconnect();
           } catch (e) {}
-          playHeroHeading(chars);
+          playHeroHeading(words);
         }
 
         var io = new IntersectionObserver(
@@ -1698,6 +1893,89 @@
       } else {
         init();
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var deck = document.getElementById("testimonialsDeck");
+      var nextBtn = document.getElementById("testimonialsDeckNext");
+      if (!deck) return;
+
+      var cards = Array.prototype.slice.call(deck.querySelectorAll(".testimonial-card--deck"));
+      if (cards.length !== 3) return;
+
+      var positions = ["front", "middle", "back"];
+      var reduceMotion =
+        window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function applyPositions() {
+        cards.forEach(function (card, i) {
+          card.setAttribute("data-position", positions[i]);
+        });
+      }
+
+      function shuffle() {
+        positions.unshift(positions.pop());
+        applyPositions();
+        cards.forEach(function (c) {
+          c.style.setProperty("--drag-x", "0px");
+        });
+      }
+
+      applyPositions();
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", shuffle);
+      }
+
+      if (reduceMotion) return;
+
+      var activeId = null;
+      var frontEl = null;
+      var startX = 0;
+
+      deck.addEventListener(
+        "pointerdown",
+        function (e) {
+          var t = e.target && e.target.closest(".testimonial-card--deck");
+          if (!t || t.getAttribute("data-position") !== "front") return;
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          frontEl = t;
+          startX = e.clientX;
+          activeId = e.pointerId;
+          frontEl.classList.add("is-dragging");
+          try {
+            frontEl.setPointerCapture(e.pointerId);
+          } catch (err) {}
+        },
+        true
+      );
+
+      deck.addEventListener("pointermove", function (e) {
+        if (e.pointerId !== activeId || !frontEl) return;
+        var dx = e.clientX - startX;
+        var elastic = dx > 0 ? dx * 0.22 : dx;
+        frontEl.style.setProperty("--drag-x", elastic + "px");
+      });
+
+      function endDrag(e) {
+        if (e.pointerId !== activeId || !frontEl) return;
+        var released = frontEl;
+        if (startX - e.clientX > 120) {
+          shuffle();
+        } else {
+          released.style.setProperty("--drag-x", "0px");
+        }
+        released.classList.remove("is-dragging");
+        try {
+          released.releasePointerCapture(e.pointerId);
+        } catch (err2) {}
+        frontEl = null;
+        activeId = null;
+      }
+
+      deck.addEventListener("pointerup", endDrag);
+      deck.addEventListener("pointercancel", endDrag);
     })();
   </script>
   <script>
