@@ -73,11 +73,11 @@
       }
       section[data-scroll] .about-text,
       section[data-scroll] .about-side,
-      section[data-scroll] > .wrap > .section-label,
-      section[data-scroll] > .wrap > h2,
+      section[data-scroll] > .wrap > .section-h2,
       section[data-scroll] .magic-bento-card,
       section[data-scroll] .project-card,
       section[data-scroll] .testimonial-card,
+      section[data-scroll] .testimonials-intro,
       section[data-scroll] .tool-pill,
       section[data-scroll] .contact-links a {
         opacity: 1 !important;
@@ -476,12 +476,34 @@
       padding: clamp(3rem, 7vw, 5.5rem) 0;
     }
 
-    section h2 {
+    .section-h2 {
+      margin: 0 0 1.5rem;
+      padding: 0;
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.45rem;
+    }
+
+    .section-h2 .section-label {
+      margin-bottom: 0;
+    }
+
+    .section-h2 .deco-line {
+      margin: 0;
+      display: block;
+    }
+
+    .section-h2__title {
+      font-family: var(--font-heading);
+      font-weight: 700;
       font-size: clamp(1.65rem, 3.2vw, 2.4rem);
       line-height: 1.14;
       letter-spacing: 0.01em;
-      margin: 0 0 1.5rem;
-      max-width: 24ch;
+      margin: 0;
+      max-width: 28ch;
+      color: var(--text);
     }
 
     .section-label {
@@ -796,6 +818,21 @@
       position: relative;
       overflow: hidden;
       transition: box-shadow 0.3s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card__text {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-project {
+      margin-top: 1.25rem;
+      align-self: flex-start;
+      position: relative;
+      z-index: 2;
     }
 
     .project-card::after {
@@ -845,7 +882,19 @@
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 1.5rem;
-        align-items: center;
+        align-items: end;
+      }
+
+      .project-card:nth-child(4) .project-card__text {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .project-card:nth-child(4) .btn-project {
+        grid-column: 2;
+        grid-row: 1;
+        margin-top: 0;
+        align-self: end;
       }
     }
 
@@ -855,13 +904,15 @@
       border-block: 1px solid var(--border);
     }
 
-    .testimonials-lead {
+    .testimonials-intro {
       margin: 0 0 1.75rem;
       max-width: 48ch;
       font-size: 1.05rem;
       color: var(--text-muted);
       line-height: 1.55;
     }
+
+    .testimonials-grid {
       display: grid;
       gap: 1rem;
       padding-top: 0.25rem;
@@ -884,11 +935,11 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 1.25rem;
+      gap: 1rem;
       position: relative;
       margin: 0;
-      padding: 1.35rem 1.45rem;
-      min-height: 11.5rem;
+      padding: 1.5rem 1.5rem 1.4rem;
+      min-height: 10.5rem;
       border-radius: var(--radius-md);
       border: 1px solid var(--border);
       background: var(--bg-elevated);
@@ -906,15 +957,6 @@
       box-shadow: var(--shadow);
     }
 
-    .testimonial-card__mark {
-      font-family: var(--font-heading);
-      font-size: 2.75rem;
-      line-height: 0.85;
-      color: var(--accent-caramel);
-      opacity: 0.85;
-      user-select: none;
-    }
-
     .testimonial-card__quote {
       margin: 0;
       font-family: var(--font-body);
@@ -924,6 +966,12 @@
       flex: 1;
       position: relative;
       z-index: 2;
+      padding-left: 0.95rem;
+      border-left: 3px solid color-mix(in srgb, var(--accent-terracotta) 65%, var(--border));
+    }
+
+    [data-theme="dark"] .testimonial-card__quote {
+      border-left-color: color-mix(in srgb, var(--accent-terracotta-soft) 70%, var(--border));
     }
 
     .testimonial-card__meta {
@@ -1088,258 +1136,223 @@
       transition-delay: 0.16s;
     }
 
-    section#services:not(.is-inview) > .section-label,
-    section#services:not(.is-inview) > h2,
+    section#services:not(.is-inview) > .section-h2,
     section#services:not(.is-inview) .magic-bento-card {
       opacity: 0;
       transform: translateY(26px);
     }
 
-    section#services > .section-label,
-    section#services > h2,
+    section#services > .section-h2,
     section#services .magic-bento-card {
       transition:
         opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    section#services.is-inview > .section-label {
+    section#services.is-inview > .section-h2 {
       transition-delay: 0s;
     }
 
-    section#services.is-inview > h2 {
-      transition-delay: 0.08s;
-    }
-
     section#services.is-inview .magic-bento-card:nth-child(1) {
-      transition-delay: 0.12s;
+      transition-delay: 0.1s;
     }
 
     section#services.is-inview .magic-bento-card:nth-child(2) {
-      transition-delay: 0.18s;
+      transition-delay: 0.16s;
     }
 
     section#services.is-inview .magic-bento-card:nth-child(3) {
-      transition-delay: 0.24s;
+      transition-delay: 0.22s;
     }
 
     section#services.is-inview .magic-bento-card:nth-child(4) {
-      transition-delay: 0.3s;
+      transition-delay: 0.28s;
     }
 
     section#services.is-inview .magic-bento-card:nth-child(5) {
-      transition-delay: 0.36s;
+      transition-delay: 0.34s;
     }
 
     section#services.is-inview .magic-bento-card:nth-child(6) {
-      transition-delay: 0.42s;
+      transition-delay: 0.4s;
     }
 
-    section#services.is-inview > .section-label,
-    section#services.is-inview > h2,
+    section#services.is-inview > .section-h2,
     section#services.is-inview .magic-bento-card {
       opacity: 1;
       transform: none;
     }
 
-    section#projects:not(.is-inview) > .section-label,
-    section#projects:not(.is-inview) > h2,
+    section#projects:not(.is-inview) > .section-h2,
     section#projects:not(.is-inview) .project-card {
       opacity: 0;
       transform: translateY(28px);
     }
 
-    section#projects > .section-label,
-    section#projects > h2,
+    section#projects > .section-h2,
     section#projects .project-card {
       transition:
         opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    section#projects.is-inview > .section-label {
+    section#projects.is-inview > .section-h2 {
       transition-delay: 0s;
     }
 
-    section#projects.is-inview > h2 {
-      transition-delay: 0.08s;
-    }
-
     section#projects.is-inview .project-card:nth-child(1) {
-      transition-delay: 0.12s;
+      transition-delay: 0.1s;
     }
 
     section#projects.is-inview .project-card:nth-child(2) {
-      transition-delay: 0.2s;
+      transition-delay: 0.18s;
     }
 
     section#projects.is-inview .project-card:nth-child(3) {
-      transition-delay: 0.28s;
+      transition-delay: 0.26s;
     }
 
     section#projects.is-inview .project-card:nth-child(4) {
-      transition-delay: 0.36s;
+      transition-delay: 0.34s;
     }
 
-    section#projects.is-inview > .section-label,
-    section#projects.is-inview > h2,
+    section#projects.is-inview > .section-h2,
     section#projects.is-inview .project-card {
       opacity: 1;
       transform: none;
     }
 
-    section#testimonials:not(.is-inview) > .section-label,
-    section#testimonials:not(.is-inview) > h2,
-    section#testimonials:not(.is-inview) .testimonials-lead,
+    section#testimonials:not(.is-inview) > .section-h2,
+    section#testimonials:not(.is-inview) .testimonials-intro,
     section#testimonials:not(.is-inview) .testimonial-card {
       opacity: 0;
       transform: translateY(26px);
     }
 
-    section#testimonials > .section-label,
-    section#testimonials > h2,
-    section#testimonials .testimonials-lead,
+    section#testimonials > .section-h2,
+    section#testimonials .testimonials-intro,
     section#testimonials .testimonial-card {
       transition:
         opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    section#testimonials.is-inview > .section-label {
+    section#testimonials.is-inview > .section-h2 {
       transition-delay: 0s;
     }
 
-    section#testimonials.is-inview > h2 {
+    section#testimonials.is-inview .testimonials-intro {
       transition-delay: 0.06s;
     }
 
-    section#testimonials.is-inview .testimonials-lead {
-      transition-delay: 0.1s;
-    }
-
     section#testimonials.is-inview .testimonial-card:nth-child(1) {
-      transition-delay: 0.14s;
+      transition-delay: 0.12s;
     }
 
     section#testimonials.is-inview .testimonial-card:nth-child(2) {
-      transition-delay: 0.22s;
+      transition-delay: 0.2s;
     }
 
     section#testimonials.is-inview .testimonial-card:nth-child(3) {
-      transition-delay: 0.3s;
+      transition-delay: 0.28s;
     }
 
-    section#testimonials.is-inview > .section-label,
-    section#testimonials.is-inview > h2,
-    section#testimonials.is-inview .testimonials-lead,
+    section#testimonials.is-inview > .section-h2,
+    section#testimonials.is-inview .testimonials-intro,
     section#testimonials.is-inview .testimonial-card {
       opacity: 1;
       transform: none;
     }
 
-    section#tools:not(.is-inview) > .section-label,
-    section#tools:not(.is-inview) > h2,
+    section#tools:not(.is-inview) > .section-h2,
     section#tools:not(.is-inview) .tool-pill {
       opacity: 0;
       transform: translateY(18px) scale(0.97);
     }
 
-    section#tools > .section-label,
-    section#tools > h2,
+    section#tools > .section-h2,
     section#tools .tool-pill {
       transition:
         opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    section#tools.is-inview > .section-label {
+    section#tools.is-inview > .section-h2 {
       transition-delay: 0s;
     }
 
-    section#tools.is-inview > h2 {
-      transition-delay: 0.06s;
-    }
-
     section#tools.is-inview .tool-pill:nth-child(1) {
-      transition-delay: 0.1s;
+      transition-delay: 0.08s;
     }
 
     section#tools.is-inview .tool-pill:nth-child(2) {
-      transition-delay: 0.14s;
+      transition-delay: 0.12s;
     }
 
     section#tools.is-inview .tool-pill:nth-child(3) {
-      transition-delay: 0.18s;
+      transition-delay: 0.16s;
     }
 
     section#tools.is-inview .tool-pill:nth-child(4) {
-      transition-delay: 0.22s;
+      transition-delay: 0.2s;
     }
 
     section#tools.is-inview .tool-pill:nth-child(5) {
-      transition-delay: 0.26s;
+      transition-delay: 0.24s;
     }
 
     section#tools.is-inview .tool-pill:nth-child(6) {
-      transition-delay: 0.3s;
+      transition-delay: 0.28s;
     }
 
     section#tools.is-inview .tool-pill:nth-child(7) {
-      transition-delay: 0.34s;
+      transition-delay: 0.32s;
     }
 
     section#tools.is-inview .tool-pill:nth-child(8) {
-      transition-delay: 0.38s;
+      transition-delay: 0.36s;
     }
 
-    section#tools.is-inview > .section-label,
-    section#tools.is-inview > h2,
+    section#tools.is-inview > .section-h2,
     section#tools.is-inview .tool-pill {
       opacity: 1;
       transform: none;
     }
 
-    section#contacts:not(.is-inview) > .section-label,
-    section#contacts:not(.is-inview) > h2,
+    section#contacts:not(.is-inview) > .section-h2,
     section#contacts:not(.is-inview) .contact-links a {
       opacity: 0;
       transform: translateX(-16px);
     }
 
-    section#contacts > .section-label,
-    section#contacts > h2,
+    section#contacts > .section-h2,
     section#contacts .contact-links a {
       transition:
         opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    section#contacts.is-inview > .section-label {
+    section#contacts.is-inview > .section-h2 {
       transition-delay: 0s;
     }
 
-    section#contacts.is-inview > h2 {
-      transition-delay: 0.07s;
-    }
-
     section#contacts.is-inview .contact-links a:nth-child(1) {
-      transition-delay: 0.12s;
+      transition-delay: 0.1s;
     }
 
     section#contacts.is-inview .contact-links a:nth-child(2) {
-      transition-delay: 0.18s;
+      transition-delay: 0.16s;
     }
 
     section#contacts.is-inview .contact-links a:nth-child(3) {
-      transition-delay: 0.24s;
+      transition-delay: 0.22s;
     }
 
     section#contacts.is-inview .contact-links a:nth-child(4) {
-      transition-delay: 0.3s;
+      transition-delay: 0.28s;
     }
 
-    section#contacts.is-inview > .section-label,
-    section#contacts.is-inview > h2,
+    section#contacts.is-inview > .section-h2,
     section#contacts.is-inview .contact-links a {
       opacity: 1;
       transform: none;
@@ -1353,8 +1366,8 @@
   <header class="site-header" id="siteHeader">
     <div class="wrap inner">
       <p class="logo">Наталья <span>Царицинская</span></p>
-      <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Переключить тему">
-        Тема
+      <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Включить тёмную тему">
+        🌙 Тёмная
       </button>
     </div>
   </header>
@@ -1389,9 +1402,11 @@
     <section class="about" id="about" data-scroll>
       <div class="wrap about-grid">
         <div class="about-text">
-          <p class="section-label">Обо мне</p>
-          <div class="deco-line" aria-hidden="true"></div>
-          <h2>Я не просто изучаю код — я внедряю технологии в реальный бизнес</h2>
+          <h2 class="section-h2 section-h2--about">
+            <span class="section-label">Обо мне</span>
+            <span class="deco-line" aria-hidden="true"></span>
+            <span class="section-h2__title">Я не просто изучаю код — я внедряю технологии в реальный бизнес</span>
+          </h2>
           <p>
             Меня зовут Наталья Царицинская. Я предприниматель, основательница бренда COVARSTVO_AROMATOV и владелица магазина «1000 мелочей».
           </p>
@@ -1412,8 +1427,10 @@
     </section>
 
     <section class="services wrap bento-section-wrap" id="services" data-scroll>
-      <p class="section-label">Направления</p>
-      <h2>Что я делаю</h2>
+      <h2 class="section-h2">
+        <span class="section-label">Направления</span>
+        <span class="section-h2__title">Что я делаю</span>
+      </h2>
       <div class="card-grid bento-section" id="magicBentoGrid" aria-label="Направления работы">
         <div
           class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
@@ -1485,38 +1502,76 @@
     </section>
 
     <section class="projects wrap" id="projects" data-scroll>
-      <p class="section-label">Портфолио</p>
-      <h2>Проекты</h2>
+      <h2 class="section-h2">
+        <span class="section-label">Портфолио</span>
+        <span class="section-h2__title">Проекты</span>
+      </h2>
       <div class="projects-grid">
         <article class="project-card">
-          <h3>AI School Quest</h3>
-          <p>Игровой AI-репетитор для школьников.</p>
+          <div class="project-card__text">
+            <h3>AI School Quest</h3>
+            <p>Игровой AI-репетитор для школьников.</p>
+          </div>
+          <a
+            class="btn btn-ghost btn-project"
+            href="https://caricinskayatutashkina1976-blip.github.io/proekt_repetitor_5_klass/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Открыть проект</a
+          >
         </article>
         <article class="project-card">
-          <h3>Калькулятор стоимости 3D-печати</h3>
-          <p>Мини-сервис для расчёта стоимости изделий.</p>
+          <div class="project-card__text">
+            <h3>Калькулятор стоимости 3D-печати</h3>
+            <p>Мини-сервис для расчёта стоимости изделий.</p>
+          </div>
+          <a
+            class="btn btn-ghost btn-project"
+            href="https://caricinskayatutashkina1976-blip.github.io/3d_printer_calculator/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Открыть проект</a
+          >
         </article>
         <article class="project-card">
-          <h3>Калькулятор семейного бюджета</h3>
-          <p>Сервис учёта доходов и расходов.</p>
+          <div class="project-card__text">
+            <h3>Калькулятор семейного бюджета</h3>
+            <p>Сервис учёта доходов и расходов.</p>
+          </div>
+          <a
+            class="btn btn-ghost btn-project"
+            href="https://caricinskayatutashkina1976-blip.github.io/family_budget_calculator/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Открыть проект</a
+          >
         </article>
         <article class="project-card">
-          <h3>Парфюмерный AI-эксперт</h3>
-          <p>Luxury-сервис подбора ароматов.</p>
+          <div class="project-card__text">
+            <h3>Парфюмерный AI-эксперт</h3>
+            <p>Luxury-сервис подбора ароматов.</p>
+          </div>
+          <a
+            class="btn btn-ghost btn-project"
+            href="https://caricinskayatutashkina1976-blip.github.io/perfume_expert/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Открыть проект</a
+          >
         </article>
       </div>
     </section>
 
     <section class="testimonials wrap" id="testimonials" data-scroll>
-      <p class="section-label">Отзывы</p>
-      <h2>Доверие и обратная связь</h2>
-      <p class="testimonials-lead">
-        Коротко о том, как AI, автоматизация и аккуратные digital-решения помогают в работе и бизнесе. Тексты-заглушки —
-        замените на&nbsp;реальные отзывы.
+      <h2 class="section-h2">
+        <span class="section-label">Отзывы</span>
+        <span class="section-h2__title">Доверие и обратная связь</span>
+      </h2>
+      <p class="testimonials-intro">
+        Коротко о том, как AI, автоматизация и аккуратные digital-решения помогают в работе и бизнесе.
       </p>
       <div class="testimonials-grid">
         <figure class="testimonial-card testimonial-card--glow">
-          <span class="testimonial-card__mark" aria-hidden="true">«</span>
           <blockquote class="testimonial-card__quote">
             Консультация по&nbsp;AI-ассистенту и понятное ТЗ помогли навести порядок в&nbsp;ответах клиентам. Без перегруза
             техническими терминами.
@@ -1527,7 +1582,6 @@
           </figcaption>
         </figure>
         <figure class="testimonial-card testimonial-card--glow">
-          <span class="testimonial-card__mark" aria-hidden="true">«</span>
           <blockquote class="testimonial-card__quote">
             Нужна была маленькая витрина и расчёт — получили аккуратный мини-сервис и понятную логику. Быстро внедрили без
             лишней бюрократии.
@@ -1538,7 +1592,6 @@
           </figcaption>
         </figure>
         <figure class="testimonial-card testimonial-card--glow">
-          <span class="testimonial-card__mark" aria-hidden="true">«</span>
           <blockquote class="testimonial-card__quote">
             Понравился подход vibe-coder: идею разложили по&nbsp;шагам, связали контент и инструменты. Хочется продолжать
             в&nbsp;том же темпе.
@@ -1552,8 +1605,10 @@
     </section>
 
     <section class="tools wrap" id="tools" data-scroll>
-      <p class="section-label">Стек</p>
-      <h2>Инструменты</h2>
+      <h2 class="section-h2">
+        <span class="section-label">Стек</span>
+        <span class="section-h2__title">Инструменты</span>
+      </h2>
       <div class="tools-marquee" role="list">
         <span class="tool-pill" role="listitem">ChatGPT</span>
         <span class="tool-pill" role="listitem">Cursor</span>
@@ -1567,8 +1622,10 @@
     </section>
 
     <section class="contacts wrap" id="contacts" data-scroll>
-      <p class="section-label">Связь</p>
-      <h2>Контакты</h2>
+      <h2 class="section-h2">
+        <span class="section-label">Связь</span>
+        <span class="section-h2__title">Контакты</span>
+      </h2>
       <nav class="contact-links" aria-label="Контакты и соцсети">
         <a href="https://t.me/" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a>
         <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
@@ -1686,7 +1743,11 @@
       function applyTheme(theme) {
         root.setAttribute("data-theme", theme);
         btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
-        btn.textContent = theme === "dark" ? "Светлая" : "Тёмная";
+        btn.textContent = theme === "dark" ? "☀️ Светлая" : "🌙 Тёмная";
+        btn.setAttribute(
+          "aria-label",
+          theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"
+        );
       }
 
       var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
