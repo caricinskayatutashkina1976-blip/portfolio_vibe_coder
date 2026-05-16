@@ -604,13 +604,13 @@
     .magic-bento-card {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-end;
       position: relative;
       aspect-ratio: 4 / 3;
       min-height: 168px;
       width: 100%;
       max-width: 100%;
-      padding: 1.15rem 1.25rem;
+      padding: 0;
       border-radius: var(--radius-md);
       border: 1px solid var(--border);
       background: var(--bg-elevated);
@@ -623,6 +623,60 @@
       --glow-y: 50%;
       --glow-intensity: 0;
       --glow-radius: 200px;
+    }
+
+    .magic-bento-card__media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .magic-bento-card__media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .magic-bento-card:hover .magic-bento-card__media img {
+      transform: scale(1.04);
+    }
+
+    .magic-bento-card__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--bg) 12%, transparent) 0%,
+        color-mix(in srgb, var(--bg) 35%, transparent) 38%,
+        color-mix(in srgb, var(--bg) 88%, transparent) 72%,
+        color-mix(in srgb, var(--bg-elevated) 96%, transparent) 100%
+      );
+      pointer-events: none;
+    }
+
+    [data-theme="dark"] .magic-bento-card__media::after {
+      background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--bg) 8%, transparent) 0%,
+        color-mix(in srgb, var(--bg) 42%, transparent) 40%,
+        color-mix(in srgb, var(--bg) 92%, transparent) 75%,
+        color-mix(in srgb, var(--bg-elevated) 98%, transparent) 100%
+      );
+    }
+
+    .magic-bento-card__panel {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      min-height: 0;
+      padding: 1.15rem 1.25rem;
     }
 
     .magic-bento-card:hover {
@@ -1579,67 +1633,139 @@
         <div
           class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
         >
-          <div class="magic-bento-card__header">
-            <span class="magic-bento-card__label">AI</span>
+          <div class="magic-bento-card__media">
+            <img
+              src="1.%20%D0%90%D1%81%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D1%82%D1%8B%20%D0%B8%20%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%8B.png"
+              alt="Ассистенты и AI-агенты"
+              width="640"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="magic-bento-card__content">
-            <h3 class="magic-bento-card__title">Ассистенты и агенты</h3>
-            <p class="magic-bento-card__description">GPT-агенты, сценарии и AI-инструменты под задачи бизнеса.</p>
-          </div>
-        </div>
-        <div
-          class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
-        >
-          <div class="magic-bento-card__header">
-            <span class="magic-bento-card__label">Web</span>
-          </div>
-          <div class="magic-bento-card__content">
-            <h3 class="magic-bento-card__title">Сайты и мини-сервисы</h3>
-            <p class="magic-bento-card__description">Лендинги, витрины и небольшие digital-сервисы под ключ.</p>
-          </div>
-        </div>
-        <div
-          class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
-        >
-          <div class="magic-bento-card__header">
-            <span class="magic-bento-card__label">Боты</span>
-          </div>
-          <div class="magic-bento-card__content">
-            <h3 class="magic-bento-card__title">Автоматизация</h3>
-            <p class="magic-bento-card__description">Чат-боты и сценарии для клиентов, заявок и внутренних процессов.</p>
+          <div class="magic-bento-card__panel">
+            <div class="magic-bento-card__header">
+              <span class="magic-bento-card__label">AI</span>
+            </div>
+            <div class="magic-bento-card__content">
+              <h3 class="magic-bento-card__title">Ассистенты и агенты</h3>
+              <p class="magic-bento-card__description">GPT-агенты, сценарии и AI-инструменты под задачи бизнеса.</p>
+            </div>
           </div>
         </div>
         <div
           class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
         >
-          <div class="magic-bento-card__header">
-            <span class="magic-bento-card__label">Контент</span>
+          <div class="magic-bento-card__media">
+            <img
+              src="2.%20%D0%A1%D0%B0%D0%B9%D1%82%D1%8B%20%D0%B8%20%D0%BC%D0%B8%D0%BD%D0%B8-%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B.png"
+              alt="Сайты и мини-сервисы"
+              width="640"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="magic-bento-card__content">
-            <h3 class="magic-bento-card__title">AI + контент</h3>
-            <p class="magic-bento-card__description">Тексты и визуал с поддержкой нейросетей и единым стилем бренда.</p>
+          <div class="magic-bento-card__panel">
+            <div class="magic-bento-card__header">
+              <span class="magic-bento-card__label">Web</span>
+            </div>
+            <div class="magic-bento-card__content">
+              <h3 class="magic-bento-card__title">Сайты и мини-сервисы</h3>
+              <p class="magic-bento-card__description">Лендинги, витрины и небольшие digital-сервисы под ключ.</p>
+            </div>
           </div>
         </div>
         <div
           class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
         >
-          <div class="magic-bento-card__header">
-            <span class="magic-bento-card__label">3D</span>
+          <div class="magic-bento-card__media">
+            <img
+              src="3.%20%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F.png"
+              alt="Автоматизация и боты"
+              width="640"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="magic-bento-card__content">
-            <h3 class="magic-bento-card__title">Печать и витрины</h3>
-            <p class="magic-bento-card__description">3D-печать (Bambu Lab) и digital-витрины для продуктов.</p>
+          <div class="magic-bento-card__panel">
+            <div class="magic-bento-card__header">
+              <span class="magic-bento-card__label">Боты</span>
+            </div>
+            <div class="magic-bento-card__content">
+              <h3 class="magic-bento-card__title">Автоматизация</h3>
+              <p class="magic-bento-card__description">Чат-боты и сценарии для клиентов, заявок и внутренних процессов.</p>
+            </div>
           </div>
         </div>
         <div
           class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
         >
-          <div class="magic-bento-card__header">
-            <span class="magic-bento-card__label">MVP</span>
+          <div class="magic-bento-card__media">
+            <img
+              src="4.%20AI%20%2B%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82.png"
+              alt="AI и контент"
+              width="640"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="magic-bento-card__content">
-            <h3 class="magic-bento-card__title">Быстрые запуски</h3>
-            <p class="magic-bento-card__description">Проверка гипотез и прототипы за короткие сроки.</p>
+          <div class="magic-bento-card__panel">
+            <div class="magic-bento-card__header">
+              <span class="magic-bento-card__label">Контент</span>
+            </div>
+            <div class="magic-bento-card__content">
+              <h3 class="magic-bento-card__title">AI + контент</h3>
+              <p class="magic-bento-card__description">Тексты и визуал с поддержкой нейросетей и единым стилем бренда.</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
+        >
+          <div class="magic-bento-card__media">
+            <img
+              src="5.%20%D0%9F%D0%B5%D1%87%D0%B0%D1%82%D1%8C%20%D0%B8%20%D0%B2%D0%B8%D1%82%D1%80%D0%B8%D0%BD%D1%8B.png"
+              alt="3D-печать и витрины"
+              width="640"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="magic-bento-card__panel">
+            <div class="magic-bento-card__header">
+              <span class="magic-bento-card__label">3D</span>
+            </div>
+            <div class="magic-bento-card__content">
+              <h3 class="magic-bento-card__title">Печать и витрины</h3>
+              <p class="magic-bento-card__description">3D-печать (Bambu Lab) и digital-витрины для продуктов.</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="magic-bento-card magic-bento-card--text-autohide magic-bento-card--border-glow particle-container"
+        >
+          <div class="magic-bento-card__media">
+            <img
+              src="6.%20%D0%91%D1%8B%D1%81%D1%82%D1%80%D1%8B%D0%B5%20%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA%D0%B8.png"
+              alt="Быстрые запуски и MVP"
+              width="640"
+              height="480"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="magic-bento-card__panel">
+            <div class="magic-bento-card__header">
+              <span class="magic-bento-card__label">MVP</span>
+            </div>
+            <div class="magic-bento-card__content">
+              <h3 class="magic-bento-card__title">Быстрые запуски</h3>
+              <p class="magic-bento-card__description">Проверка гипотез и прототипы за короткие сроки.</p>
+            </div>
           </div>
         </div>
       </div>
