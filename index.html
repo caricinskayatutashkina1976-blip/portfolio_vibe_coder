@@ -871,6 +871,27 @@
         grid-row: 3;
       }
     }
+    .projects-group {
+      margin-top: 2rem;
+    }
+
+    .projects-group:first-of-type {
+      margin-top: 0.25rem;
+    }
+
+    .projects-group__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 1.15rem;
+      color: var(--text);
+    }
+
+    .projects-group--concepts .projects-group__title {
+      color: var(--text-muted);
+    }
+
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -942,34 +963,44 @@
       line-height: 1.6;
     }
 
-    .project-card p strong {
-      color: var(--text);
+    .project-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
       font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-caramel);
+      margin-bottom: 0.15rem;
+      position: relative;
+      z-index: 2;
     }
 
-    .project-card:nth-child(1) {
-      grid-column: span 1;
+    .project-card--concept {
+      border-style: dashed;
+      border-color: color-mix(in srgb, var(--accent-caramel) 35%, var(--border));
     }
 
-    .project-card:nth-child(5) {
+    .projects-group--ready .projects-grid .project-card:last-child {
       grid-column: 1 / -1;
       max-width: 100%;
     }
 
     @media (min-width: 701px) {
-      .project-card:nth-child(5) {
+      .projects-group--ready .projects-grid .project-card:last-child {
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 1.5rem;
         align-items: end;
       }
 
-      .project-card:nth-child(5) .project-card__text {
+      .projects-group--ready .projects-grid .project-card:last-child .project-card__text {
         grid-column: 1;
         grid-row: 1;
       }
 
-      .project-card:nth-child(5) .btn-project {
+      .projects-group--ready .projects-grid .project-card:last-child .btn-project {
         grid-column: 2;
         grid-row: 1;
         margin-top: 0;
@@ -1473,12 +1504,14 @@
     }
 
     section#projects:not(.is-inview) > .section-h2,
+    section#projects:not(.is-inview) .projects-group__title,
     section#projects:not(.is-inview) .project-card {
       opacity: 0;
       transform: translateY(28px);
     }
 
     section#projects > .section-h2,
+    section#projects .projects-group__title,
     section#projects .project-card {
       transition:
         opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
@@ -1489,27 +1522,48 @@
       transition-delay: 0s;
     }
 
-    section#projects.is-inview .project-card:nth-child(1) {
+    section#projects.is-inview .projects-group:first-of-type .projects-group__title {
+      transition-delay: 0.06s;
+    }
+
+    section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(1) {
       transition-delay: 0.1s;
     }
 
-    section#projects.is-inview .project-card:nth-child(2) {
-      transition-delay: 0.18s;
+    section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(2) {
+      transition-delay: 0.16s;
     }
 
-    section#projects.is-inview .project-card:nth-child(3) {
-      transition-delay: 0.26s;
+    section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(3) {
+      transition-delay: 0.22s;
     }
 
-    section#projects.is-inview .project-card:nth-child(4) {
+    section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(4) {
+      transition-delay: 0.28s;
+    }
+
+    section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(5) {
       transition-delay: 0.34s;
     }
 
-    section#projects.is-inview .project-card:nth-child(5) {
-      transition-delay: 0.42s;
+    section#projects.is-inview .projects-group:last-of-type .projects-group__title {
+      transition-delay: 0.4s;
+    }
+
+    section#projects.is-inview .projects-group:last-of-type .project-card:nth-child(1) {
+      transition-delay: 0.46s;
+    }
+
+    section#projects.is-inview .projects-group:last-of-type .project-card:nth-child(2) {
+      transition-delay: 0.52s;
+    }
+
+    section#projects.is-inview .projects-group:last-of-type .project-card:nth-child(3) {
+      transition-delay: 0.58s;
     }
 
     section#projects.is-inview > .section-h2,
+    section#projects.is-inview .projects-group__title,
     section#projects.is-inview .project-card {
       opacity: 1;
       transform: none;
@@ -1878,92 +1932,133 @@
         <span class="section-label">Портфолио</span>
         <span class="section-h2__title">Проекты</span>
       </h2>
-      <div class="projects-grid">
-        <article class="project-card">
-          <div class="project-card__text">
-            <h3>AI School Quest</h3>
-            <p>
-              <strong>Для кого:</strong> родители и школьники.<br />
-              <strong>Задача:</strong> помочь разобраться в предмете без сухих лекций.<br />
-              <strong>Результат:</strong> игровой AI-репетитор, который объясняет простым языком и вовлекает в учёбу.
-            </p>
-          </div>
-          <a
-            class="btn btn-ghost btn-project"
-            href="https://caricinskayatutashkina1976-blip.github.io/proekt_repetitor_5_klass/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Открыть проект</a
-          >
-        </article>
-        <article class="project-card">
-          <div class="project-card__text">
-            <h3>Калькулятор стоимости 3D-печати</h3>
-            <p>
-              <strong>Для кого:</strong> мастера 3D-печати и мини-типографии.<br />
-              <strong>Задача:</strong> быстро назвать клиенту цену без ручных подсчётов.<br />
-              <strong>Результат:</strong> понятный калькулятор — меньше однотипных вопросов, больше заказов.
-            </p>
-          </div>
-          <a
-            class="btn btn-ghost btn-project"
-            href="https://caricinskayatutashkina1976-blip.github.io/3d_printer_calculator/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Открыть проект</a
-          >
-        </article>
-        <article class="project-card">
-          <div class="project-card__text">
-            <h3>Калькулятор семейного бюджета</h3>
-            <p>
-              <strong>Для кого:</strong> семьи и частные лица.<br />
-              <strong>Задача:</strong> держать расходы под контролем без сложных таблиц.<br />
-              <strong>Результат:</strong> простой сервис учёта — видно, куда уходят деньги и что можно улучшить.
-            </p>
-          </div>
-          <a
-            class="btn btn-ghost btn-project"
-            href="https://caricinskayatutashkina1976-blip.github.io/family_budget_calculator/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Открыть проект</a
-          >
-        </article>
-        <article class="project-card">
-          <div class="project-card__text">
-            <h3>Парфюмерный AI-эксперт</h3>
-            <p>
-              <strong>Для кого:</strong> покупатели нишевой парфюмерии.<br />
-              <strong>Задача:</strong> подобрать аромат без долгого поиска и сомнений.<br />
-              <strong>Результат:</strong> AI-консультант, который помогает найти свой запах в спокойном, премиальном формате.
-            </p>
-          </div>
-          <a
-            class="btn btn-ghost btn-project"
-            href="https://caricinskayatutashkina1976-blip.github.io/perfume_expert/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Открыть проект</a
-          >
-        </article>
-        <article class="project-card">
-          <div class="project-card__text">
-            <h3>Дыши свободно</h3>
-            <p>
-              <strong>Для кого:</strong> люди, которые хотят бросить курить.<br />
-              <strong>Задача:</strong> дать мягкую поддержку, а не сухую инструкцию.<br />
-              <strong>Результат:</strong> тёплый лендинг с мотивацией и шагами к ощущению свободы и лёгкого дыхания.
-            </p>
-          </div>
-          <a
-            class="btn btn-ghost btn-project"
-            href="https://caricinskayatutashkina1976-blip.github.io/Breathe-freely/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Открыть проект</a
-          >
-        </article>
+      <div class="projects-group projects-group--ready">
+        <h3 class="projects-group__title">Готовые проекты</h3>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-card__text">
+              <h3>AI School Quest</h3>
+              <p>
+                Игровой AI-наставник для школьников: помогает разбирать домашние задания без списывания, объясняет
+                простыми словами, добавляет квесты, XP, медали и режим родителя. Подходит для семей, репетиторов и
+                онлайн-школ.
+              </p>
+            </div>
+            <a
+              class="btn btn-ghost btn-project"
+              href="https://caricinskayatutashkina1976-blip.github.io/proekt_repetitor_5_klass/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть проект</a
+            >
+          </article>
+          <article class="project-card">
+            <div class="project-card__text">
+              <h3>Калькулятор стоимости 3D-печати</h3>
+              <p>
+                Мини-сервис для мастеров и владельцев 3D-принтеров: рассчитывает себестоимость и рекомендуемую цену
+                продажи по весу модели, стоимости пластика, времени печати, расходам и наценке. Помогает не продавать
+                изделия себе в минус.
+              </p>
+            </div>
+            <a
+              class="btn btn-ghost btn-project"
+              href="https://caricinskayatutashkina1976-blip.github.io/3d_printer_calculator/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть проект</a
+            >
+          </article>
+          <article class="project-card">
+            <div class="project-card__text">
+              <h3>Калькулятор семейного бюджета</h3>
+              <p>
+                Учебный финансовый сервис для семьи: помогает посчитать доходы, расходы, ежедневные траты, остаток за
+                месяц и структуру бюджета. Работает офлайн в браузере и показывает, куда уходят деньги.
+              </p>
+            </div>
+            <a
+              class="btn btn-ghost btn-project"
+              href="https://caricinskayatutashkina1976-blip.github.io/family_budget_calculator/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть проект</a
+            >
+          </article>
+          <article class="project-card">
+            <div class="project-card__text">
+              <h3>Парфюмерный AI-эксперт</h3>
+              <p>
+                Демо-консультант для аромабренда: помогает подобрать аромат по любимому парфюму, нотам, стилю, ситуации и
+                образу. Формирует анализ, похожие направления и парфюмерный гардероб. Подходит для парфюмерии, свечей,
+                диффузоров и подарочных наборов.
+              </p>
+            </div>
+            <a
+              class="btn btn-ghost btn-project"
+              href="https://caricinskayatutashkina1976-blip.github.io/perfume_expert/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть проект</a
+            >
+          </article>
+          <article class="project-card">
+            <div class="project-card__text">
+              <h3>Дыши свободно</h3>
+              <p>
+                Эмоциональный wellness-лендинг с элементами AI-поддержки: анкета, дыхательная пауза, фразы поддержки,
+                расчёт прогресса и сохранённых денег. Подходит для мягких мотивационных проектов, марафонов, привычек и
+                заботы о себе.
+              </p>
+            </div>
+            <a
+              class="btn btn-ghost btn-project"
+              href="https://caricinskayatutashkina1976-blip.github.io/Breathe-freely/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть проект</a
+            >
+          </article>
+        </div>
+      </div>
+
+      <div class="projects-group projects-group--concepts">
+        <h3 class="projects-group__title">Концепты, которые могу реализовать</h3>
+        <div class="projects-grid">
+          <article class="project-card project-card--concept">
+            <span class="project-badge">Концепт</span>
+            <div class="project-card__text">
+              <h3>Бот «Контент-помощник»</h3>
+              <p>
+                AI-помощник для предпринимателя: генерирует идеи постов, продающие тексты, описания товаров, акции,
+                прогревы и ответы клиентам. Подходит для Telegram, MAX, VK и локального бизнеса.
+              </p>
+            </div>
+            <a class="btn btn-ghost btn-project" href="#contacts">Обсудить похожий проект</a>
+          </article>
+          <article class="project-card project-card--concept">
+            <span class="project-badge">Концепт</span>
+            <div class="project-card__text">
+              <h3>Квиз для сбора заявок</h3>
+              <p>
+                Интерактивный опрос, который помогает клиенту выбрать продукт или услугу, а бизнесу — получить заявку и
+                контакт. Можно адаптировать под ароматы, подарки, 3D-изделия, услуги экспертов и магазины.
+              </p>
+            </div>
+            <a class="btn btn-ghost btn-project" href="#contacts">Обсудить похожий проект</a>
+          </article>
+          <article class="project-card project-card--concept">
+            <span class="project-badge">Концепт</span>
+            <div class="project-card__text">
+              <h3>Digital-витрина товаров</h3>
+              <p>
+                Онлайн-витрина для handmade, 3D-товаров и локального бизнеса: карточки товаров, цены, размеры, фото,
+                описание и кнопка заказа. Помогает быстро показать ассортимент без сложного интернет-магазина.
+              </p>
+            </div>
+            <a class="btn btn-ghost btn-project" href="#contacts">Обсудить похожий проект</a>
+          </article>
+        </div>
       </div>
     </section>
 
