@@ -85,6 +85,7 @@
       section[data-scroll] .about-side,
       section[data-scroll] > .wrap > .section-h2,
       section[data-scroll] .magic-bento-card,
+      section[data-scroll] .projects-intro,
       section[data-scroll] .project-card,
       section[data-scroll] .help-grid,
       section[data-scroll] .help-intro,
@@ -871,6 +872,14 @@
         grid-row: 3;
       }
     }
+    .projects-intro {
+      margin: 0 0 1.75rem;
+      max-width: 58ch;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
     .projects-group {
       margin-top: 2rem;
     }
@@ -1504,6 +1513,7 @@
     }
 
     section#projects:not(.is-inview) > .section-h2,
+    section#projects:not(.is-inview) .projects-intro,
     section#projects:not(.is-inview) .projects-group__title,
     section#projects:not(.is-inview) .project-card {
       opacity: 0;
@@ -1511,6 +1521,7 @@
     }
 
     section#projects > .section-h2,
+    section#projects .projects-intro,
     section#projects .projects-group__title,
     section#projects .project-card {
       transition:
@@ -1522,47 +1533,56 @@
       transition-delay: 0s;
     }
 
-    section#projects.is-inview .projects-group:first-of-type .projects-group__title {
+    section#projects.is-inview .projects-intro {
       transition-delay: 0.06s;
     }
 
-    section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(1) {
+    section#projects.is-inview .projects-group:first-of-type .projects-group__title {
       transition-delay: 0.1s;
     }
 
+    section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(1) {
+      transition-delay: 0.14s;
+    }
+
     section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(2) {
-      transition-delay: 0.16s;
+      transition-delay: 0.2s;
     }
 
     section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(3) {
-      transition-delay: 0.22s;
+      transition-delay: 0.26s;
     }
 
     section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(4) {
-      transition-delay: 0.28s;
+      transition-delay: 0.32s;
     }
 
     section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(5) {
-      transition-delay: 0.34s;
+      transition-delay: 0.38s;
+    }
+
+    section#projects.is-inview .projects-group:first-of-type .project-card:nth-child(6) {
+      transition-delay: 0.44s;
     }
 
     section#projects.is-inview .projects-group:last-of-type .projects-group__title {
-      transition-delay: 0.4s;
+      transition-delay: 0.5s;
     }
 
     section#projects.is-inview .projects-group:last-of-type .project-card:nth-child(1) {
-      transition-delay: 0.46s;
+      transition-delay: 0.56s;
     }
 
     section#projects.is-inview .projects-group:last-of-type .project-card:nth-child(2) {
-      transition-delay: 0.52s;
+      transition-delay: 0.62s;
     }
 
     section#projects.is-inview .projects-group:last-of-type .project-card:nth-child(3) {
-      transition-delay: 0.58s;
+      transition-delay: 0.68s;
     }
 
     section#projects.is-inview > .section-h2,
+    section#projects.is-inview .projects-intro,
     section#projects.is-inview .projects-group__title,
     section#projects.is-inview .project-card {
       opacity: 1;
@@ -1932,9 +1952,30 @@
         <span class="section-label">Портфолио</span>
         <span class="section-h2__title">Проекты</span>
       </h2>
+      <p class="projects-intro">
+        Я создаю не просто сайты, а понятные digital-инструменты: они помогают бизнесу презентовать продукт, собирать
+        заявки, консультировать клиентов, считать стоимость и продавать понятнее.
+      </p>
       <div class="projects-group projects-group--ready">
         <h3 class="projects-group__title">Готовые проекты</h3>
         <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-card__text">
+              <h3>COVARSTVO_AROMATOV</h3>
+              <p>
+                Брендовый сайт-витрина для аромапродукции: главный экран, коллекции, карточки товаров, каталог, корзина,
+                блок доставки, описание философии бренда и AI-подбор аромата по настроению, пространству и любимым нотам.
+                Проект показывает, как можно соединить эстетику бренда, продажи и интерактивный подбор продукта.
+              </p>
+            </div>
+            <a
+              class="btn btn-ghost btn-project"
+              href="https://covarstvo-aromatov.lovable.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть проект</a
+            >
+          </article>
           <article class="project-card">
             <div class="project-card__text">
               <h3>AI School Quest</h3>
@@ -2006,9 +2047,9 @@
             <div class="project-card__text">
               <h3>Дыши свободно</h3>
               <p>
-                Эмоциональный wellness-лендинг с элементами AI-поддержки: анкета, дыхательная пауза, фразы поддержки,
-                расчёт прогресса и сохранённых денег. Подходит для мягких мотивационных проектов, марафонов, привычек и
-                заботы о себе.
+                Эмоциональный wellness-лендинг с элементами поддержки: анкета, дыхательная пауза, фразы поддержки, расчёт
+                прогресса и сохранённых денег. Подходит для мягких мотивационных проектов, марафонов, привычек и заботы
+                о себе.
               </p>
             </div>
             <a
@@ -2125,7 +2166,9 @@
         <a href="https://t.me/" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a>
         <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
         <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages <span>↗</span></a>
-        <a href="#" title="Ссылка на бренд COVARSTVO_AROMATOV">COVARSTVO_AROMATOV <span>↗</span></a>
+        <a href="https://covarstvo-aromatov.lovable.app" target="_blank" rel="noopener noreferrer"
+          >COVARSTVO_AROMATOV <span>↗</span></a
+        >
       </nav>
     </section>
   </main>
