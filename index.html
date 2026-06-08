@@ -13,8 +13,8 @@
     })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Наталья Царицинская — vibe coder, AI-ассистенты, сайты и digital-инструменты для бизнеса." />
-  <title>Наталья Царицинская — Vibe Coder &amp; AI</title>
+  <meta name="description" content="Наталья Царицинская — vibe-coder и AI-практик для малого бизнеса: ассистенты, сайты, боты и мини-сервисы под реальные задачи." />
+  <title>Наталья Царицинская — Vibe-coder &amp; AI для малого бизнеса</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
@@ -86,8 +86,8 @@
       section[data-scroll] > .wrap > .section-h2,
       section[data-scroll] .magic-bento-card,
       section[data-scroll] .project-card,
-      section[data-scroll] .testimonials-deck-wrap,
-      section[data-scroll] .testimonials-intro,
+      section[data-scroll] .help-grid,
+      section[data-scroll] .help-intro,
       section[data-scroll] .tool-pill,
       section[data-scroll] .contact-links a {
         opacity: 1 !important;
@@ -939,6 +939,12 @@
       color: var(--text-muted);
       position: relative;
       z-index: 1;
+      line-height: 1.6;
+    }
+
+    .project-card p strong {
+      color: var(--text);
+      font-weight: 600;
     }
 
     .project-card:nth-child(1) {
@@ -971,12 +977,83 @@
       }
     }
 
-    .testimonials-intro {
+    .help-intro {
       margin: 0 0 1.75rem;
-      max-width: 48ch;
+      max-width: 52ch;
       font-size: 1.05rem;
       color: var(--text-muted);
       line-height: 1.55;
+    }
+
+    .help-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .help-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .help-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .help-card {
+      padding: 1.75rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .help-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at top right, var(--accent-glow), transparent 70%);
+      pointer-events: none;
+    }
+
+    .help-card:hover {
+      box-shadow: var(--shadow);
+      border-color: color-mix(in srgb, var(--accent-terracotta) 40%, var(--border));
+    }
+
+    .help-card .magic-bento-card__label {
+      position: relative;
+      z-index: 1;
+    }
+
+    .help-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.25;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .help-card p {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
     }
 
     .testimonials-deck-wrap {
@@ -1438,36 +1515,44 @@
       transform: none;
     }
 
-    section#testimonials:not(.is-inview) > .section-h2,
-    section#testimonials:not(.is-inview) .testimonials-intro,
-    section#testimonials:not(.is-inview) .testimonials-deck-wrap {
+    section#help:not(.is-inview) > .section-h2,
+    section#help:not(.is-inview) .help-intro,
+    section#help:not(.is-inview) .help-card {
       opacity: 0;
       transform: translateY(26px);
     }
 
-    section#testimonials > .section-h2,
-    section#testimonials .testimonials-intro,
-    section#testimonials .testimonials-deck-wrap {
+    section#help > .section-h2,
+    section#help .help-intro,
+    section#help .help-card {
       transition:
         opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    section#testimonials.is-inview > .section-h2 {
+    section#help.is-inview > .section-h2 {
       transition-delay: 0s;
     }
 
-    section#testimonials.is-inview .testimonials-intro {
+    section#help.is-inview .help-intro {
       transition-delay: 0.06s;
     }
 
-    section#testimonials.is-inview .testimonials-deck-wrap {
+    section#help.is-inview .help-card:nth-child(1) {
       transition-delay: 0.12s;
     }
 
-    section#testimonials.is-inview > .section-h2,
-    section#testimonials.is-inview .testimonials-intro,
-    section#testimonials.is-inview .testimonials-deck-wrap {
+    section#help.is-inview .help-card:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    section#help.is-inview .help-card:nth-child(3) {
+      transition-delay: 0.28s;
+    }
+
+    section#help.is-inview > .section-h2,
+    section#help.is-inview .help-intro,
+    section#help.is-inview .help-card {
       opacity: 1;
       transform: none;
     }
@@ -1584,9 +1669,12 @@
     <section class="hero wrap" id="top">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Vibe Coder / AI Assistants / Web &amp; Business Tools</p>
-          <h1 id="heroHeading">Я создаю AI-ассистентов, сайты и digital-инструменты, которые помогают бизнесу работать умнее</h1>
-          <p class="lead">Соединяю нейросети, код, визуал и реальный предпринимательский опыт.</p>
+          <p class="eyebrow">Vibe-coder · AI-ассистенты · сайты · боты · мини-сервисы</p>
+          <h1 id="heroHeading">Делаю AI-ассистентов, сайты, ботов и мини-сервисы, которые экономят время малого бизнеса</h1>
+          <p class="lead">
+            Помогаю владельцам магазинов, мастерам и нишевым брендам автоматизировать рутину и уверенно выглядеть
+            онлайн — без сложных слов и долгих внедрений.
+          </p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#projects">Посмотреть проекты</a>
             <a class="btn btn-ghost" href="#contacts">Обсудить задачу</a>
@@ -1601,7 +1689,7 @@
               height="800"
               loading="eager"
             />
-            <span class="photo-caption">Vibe Coder · Ханымей</span>
+            <span class="photo-caption">Vibe-coder · AI для бизнеса</span>
           </div>
         </div>
       </div>
@@ -1613,12 +1701,16 @@
           <h2 class="section-h2 section-h2--about">
             <span class="section-label">Обо мне</span>
             <span class="deco-line" aria-hidden="true"></span>
-            <span class="section-h2__title">Я не просто изучаю код — я внедряю технологии в реальный бизнес</span>
+            <span class="section-h2__title">Создаю digital-инструменты и понимаю задачи малого бизнеса изнутри</span>
           </h2>
           <p>
-            Меня зовут Наталья Царицинская. Я предприниматель, основательница бренда COVARSTVO_AROMATOV и владелица магазина «1000 мелочей».
+            Меня зовут Наталья Царицинская. Я vibe-coder: делаю AI-ассистентов, сайты, ботов и мини-сервисы под
+            конкретные задачи — от ответов клиентам до аккуратной витрины товаров.
           </p>
-          <p>Создаю AI-ассистентов, сайты, мини-сервисы и digital-проекты.</p>
+          <p>
+            Сама вела магазин «1000 мелочей» и бренд COVARSTVO_AROMATOV — поэтому знаю, что важно владельцу: скорость,
+            понятность и результат без лишней суеты.
+          </p>
         </div>
         <div class="about-side">
           <figure class="about-photo">
@@ -1659,7 +1751,7 @@
             </div>
             <div class="magic-bento-card__content">
               <h3 class="magic-bento-card__title">Ассистенты и агенты</h3>
-              <p class="magic-bento-card__description">GPT-агенты, сценарии и AI-инструменты под задачи бизнеса.</p>
+              <p class="magic-bento-card__description">Умные помощники для ответов клиентам, консультаций и рутины — под ваши сценарии.</p>
             </div>
           </div>
         </div>
@@ -1682,7 +1774,7 @@
             </div>
             <div class="magic-bento-card__content">
               <h3 class="magic-bento-card__title">Сайты и мини-сервисы</h3>
-              <p class="magic-bento-card__description">Лендинги, витрины и небольшие digital-сервисы под ключ.</p>
+              <p class="magic-bento-card__description">Лендинги и небольшие сервисы, которые понятны клиенту и удобны вам.</p>
             </div>
           </div>
         </div>
@@ -1705,7 +1797,7 @@
             </div>
             <div class="magic-bento-card__content">
               <h3 class="magic-bento-card__title">Автоматизация</h3>
-              <p class="magic-bento-card__description">Чат-боты и сценарии для клиентов, заявок и внутренних процессов.</p>
+              <p class="magic-bento-card__description">Боты для заявок, вопросов и напоминаний — меньше ручной работы каждый день.</p>
             </div>
           </div>
         </div>
@@ -1728,7 +1820,7 @@
             </div>
             <div class="magic-bento-card__content">
               <h3 class="magic-bento-card__title">AI + контент</h3>
-              <p class="magic-bento-card__description">Тексты и визуал с поддержкой нейросетей и единым стилем бренда.</p>
+              <p class="magic-bento-card__description">Тексты и визуал в едином стиле бренда — быстрее и аккуратнее, чем с нуля.</p>
             </div>
           </div>
         </div>
@@ -1738,7 +1830,7 @@
           <div class="magic-bento-card__media">
             <img
               src="5. Печать и витрины.png"
-              alt="3D-печать и витрины"
+              alt="Digital-витрины для товаров"
               width="640"
               height="480"
               loading="lazy"
@@ -1747,11 +1839,11 @@
           </div>
           <div class="magic-bento-card__panel">
             <div class="magic-bento-card__header">
-              <span class="magic-bento-card__label">3D</span>
+              <span class="magic-bento-card__label">Витрина</span>
             </div>
             <div class="magic-bento-card__content">
-              <h3 class="magic-bento-card__title">Печать и витрины</h3>
-              <p class="magic-bento-card__description">3D-печать (Bambu Lab) и digital-витрины для продуктов.</p>
+              <h3 class="magic-bento-card__title">Digital-витрины для товаров</h3>
+              <p class="magic-bento-card__description">Онлайн-витрины и карточки товаров — удобно показать ассортимент и принять заказ.</p>
             </div>
           </div>
         </div>
@@ -1774,7 +1866,7 @@
             </div>
             <div class="magic-bento-card__content">
               <h3 class="magic-bento-card__title">Быстрые запуски</h3>
-              <p class="magic-bento-card__description">Проверка гипотез и прототипы за короткие сроки.</p>
+              <p class="magic-bento-card__description">Быстрый запуск идеи: лендинг или прототип, чтобы проверить спрос без больших затрат.</p>
             </div>
           </div>
         </div>
@@ -1790,7 +1882,11 @@
         <article class="project-card">
           <div class="project-card__text">
             <h3>AI School Quest</h3>
-            <p>Игровой AI-репетитор для школьников.</p>
+            <p>
+              <strong>Для кого:</strong> родители и школьники.<br />
+              <strong>Задача:</strong> помочь разобраться в предмете без сухих лекций.<br />
+              <strong>Результат:</strong> игровой AI-репетитор, который объясняет простым языком и вовлекает в учёбу.
+            </p>
           </div>
           <a
             class="btn btn-ghost btn-project"
@@ -1803,7 +1899,11 @@
         <article class="project-card">
           <div class="project-card__text">
             <h3>Калькулятор стоимости 3D-печати</h3>
-            <p>Мини-сервис для расчёта стоимости изделий.</p>
+            <p>
+              <strong>Для кого:</strong> мастера 3D-печати и мини-типографии.<br />
+              <strong>Задача:</strong> быстро назвать клиенту цену без ручных подсчётов.<br />
+              <strong>Результат:</strong> понятный калькулятор — меньше однотипных вопросов, больше заказов.
+            </p>
           </div>
           <a
             class="btn btn-ghost btn-project"
@@ -1816,7 +1916,11 @@
         <article class="project-card">
           <div class="project-card__text">
             <h3>Калькулятор семейного бюджета</h3>
-            <p>Сервис учёта доходов и расходов.</p>
+            <p>
+              <strong>Для кого:</strong> семьи и частные лица.<br />
+              <strong>Задача:</strong> держать расходы под контролем без сложных таблиц.<br />
+              <strong>Результат:</strong> простой сервис учёта — видно, куда уходят деньги и что можно улучшить.
+            </p>
           </div>
           <a
             class="btn btn-ghost btn-project"
@@ -1829,7 +1933,11 @@
         <article class="project-card">
           <div class="project-card__text">
             <h3>Парфюмерный AI-эксперт</h3>
-            <p>Luxury-сервис подбора ароматов.</p>
+            <p>
+              <strong>Для кого:</strong> покупатели нишевой парфюмерии.<br />
+              <strong>Задача:</strong> подобрать аромат без долгого поиска и сомнений.<br />
+              <strong>Результат:</strong> AI-консультант, который помогает найти свой запах в спокойном, премиальном формате.
+            </p>
           </div>
           <a
             class="btn btn-ghost btn-project"
@@ -1843,8 +1951,9 @@
           <div class="project-card__text">
             <h3>Дыши свободно</h3>
             <p>
-              Эмоциональный wellness-лендинг для поддержки людей, которые хотят отказаться от курения и вернуть
-              ощущение свободы дыхания.
+              <strong>Для кого:</strong> люди, которые хотят бросить курить.<br />
+              <strong>Задача:</strong> дать мягкую поддержку, а не сухую инструкцию.<br />
+              <strong>Результат:</strong> тёплый лендинг с мотивацией и шагами к ощущению свободы и лёгкого дыхания.
             </p>
           </div>
           <a
@@ -1858,86 +1967,40 @@
       </div>
     </section>
 
-    <section class="testimonials wrap" id="testimonials" data-scroll>
+    <section class="help wrap" id="help" data-scroll>
       <h2 class="section-h2">
-        <span class="section-label">Отзывы</span>
-        <span class="section-h2__title">Доверие и обратная связь</span>
+        <span class="section-label">Сотрудничество</span>
+        <span class="section-h2__title">Как я могу помочь</span>
       </h2>
-      <p class="testimonials-intro">
-        Коротко о том, как AI, автоматизация и аккуратные digital-решения помогают в работе и бизнесе.
+      <p class="help-intro">
+        Если у вас магазин, мастерская, нишевый бренд или небольшая команда — вот с чем обычно приходят и что мы можем
+        сделать вместе.
       </p>
-      <div class="testimonials-deck-wrap">
-        <div class="testimonials-deck" id="testimonialsDeck" aria-live="polite">
-          <figure class="testimonial-card testimonial-card--deck" data-position="front">
-            <span class="magic-bento-card__label">Отзыв</span>
-            <div class="testimonial-card__avatar">
-              <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&amp;w=144&amp;h=144&amp;fit=crop&amp;q=80"
-                alt="Фото для оформления отзыва: Елена М."
-                width="72"
-                height="72"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <blockquote class="testimonial-card__quote">
-              Консультация по&nbsp;AI-ассистенту и понятное ТЗ помогли навести порядок в&nbsp;ответах клиентам. Без
-              перегруза техническими терминами.
-            </blockquote>
-            <figcaption class="testimonial-card__meta">
-              <cite class="testimonial-card__author">Елена М.</cite>
-              <span class="testimonial-card__role">розничная точка · Ханымей</span>
-            </figcaption>
-          </figure>
-          <figure class="testimonial-card testimonial-card--deck" data-position="middle">
-            <span class="magic-bento-card__label">Отзыв</span>
-            <div class="testimonial-card__avatar">
-              <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&amp;w=144&amp;h=144&amp;fit=crop&amp;q=80"
-                alt="Фото для оформления отзыва: представитель ИП «Север-Принт»"
-                width="72"
-                height="72"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <blockquote class="testimonial-card__quote">
-              Нужна была маленькая витрина и расчёт — получили аккуратный мини-сервис и понятную логику. Быстро внедрили
-              без лишней бюрократии.
-            </blockquote>
-            <figcaption class="testimonial-card__meta">
-              <cite class="testimonial-card__author">ИП «Север-Принт»</cite>
-              <span class="testimonial-card__role">3D-печать и заказы онлайн</span>
-            </figcaption>
-          </figure>
-          <figure class="testimonial-card testimonial-card--deck" data-position="back">
-            <span class="magic-bento-card__label">Отзыв</span>
-            <div class="testimonial-card__avatar">
-              <img
-                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&amp;w=144&amp;h=144&amp;fit=crop&amp;q=80"
-                alt="Фото для оформления отзыва: Марина К."
-                width="72"
-                height="72"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <blockquote class="testimonial-card__quote">
-              Понравился подход vibe-coder: идею разложили по&nbsp;шагам, связали контент и инструменты. Хочется
-              продолжать в&nbsp;том же темпе.
-            </blockquote>
-            <figcaption class="testimonial-card__meta">
-              <cite class="testimonial-card__author">Марина К.</cite>
-              <span class="testimonial-card__role">нишевый бренд и соцсети</span>
-            </figcaption>
-          </figure>
-        </div>
-        <p class="testimonials-deck-hint">
-          Потяните верхнюю карточку влево, как в колоде, или нажмите кнопку — появится следующий отзыв.
-        </p>
-        <button type="button" class="btn btn-ghost testimonials-deck-next" id="testimonialsDeckNext">
-          Следующий отзыв
-        </button>
+      <div class="help-grid">
+        <article class="help-card">
+          <span class="magic-bento-card__label">Шаг 1</span>
+          <h3>Разобраться с задачей</h3>
+          <p>
+            Помогу понять, что именно нужно: AI-ассистент, сайт, бот или мини-сервис. Обсудим цель, сроки и бюджет
+            простым языком.
+          </p>
+        </article>
+        <article class="help-card">
+          <span class="magic-bento-card__label">Шаг 2</span>
+          <h3>Собрать решение</h3>
+          <p>
+            Сделаю прототип или готовый инструмент под ваш бизнес — без лишних функций и с фокусом на пользу для клиентов
+            и для вас.
+          </p>
+        </article>
+        <article class="help-card">
+          <span class="magic-bento-card__label">Шаг 3</span>
+          <h3>Запустить и доработать</h3>
+          <p>
+            Покажу, как пользоваться результатом, и помогу улучшить по обратной связи. Вы получаете рабочий инструмент, а
+            не «красивую картинку».
+          </p>
+        </article>
       </div>
     </section>
 
@@ -1973,7 +2036,7 @@
   </main>
 
   <footer class="site-footer wrap" id="siteFooter">
-    <p><strong>Наталья Царицинская</strong> · vibe coder · AI · бизнес</p>
+    <p><strong>Наталья Царицинская</strong> · vibe-coder · AI для малого бизнеса</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -2070,89 +2133,6 @@
       } else {
         init();
       }
-    })();
-  </script>
-  <script>
-    (function () {
-      var deck = document.getElementById("testimonialsDeck");
-      var nextBtn = document.getElementById("testimonialsDeckNext");
-      if (!deck) return;
-
-      var cards = Array.prototype.slice.call(deck.querySelectorAll(".testimonial-card--deck"));
-      if (cards.length !== 3) return;
-
-      var positions = ["front", "middle", "back"];
-      var reduceMotion =
-        window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      function applyPositions() {
-        cards.forEach(function (card, i) {
-          card.setAttribute("data-position", positions[i]);
-        });
-      }
-
-      function shuffle() {
-        positions.unshift(positions.pop());
-        applyPositions();
-        cards.forEach(function (c) {
-          c.style.setProperty("--drag-x", "0px");
-        });
-      }
-
-      applyPositions();
-
-      if (nextBtn) {
-        nextBtn.addEventListener("click", shuffle);
-      }
-
-      if (reduceMotion) return;
-
-      var activeId = null;
-      var frontEl = null;
-      var startX = 0;
-
-      deck.addEventListener(
-        "pointerdown",
-        function (e) {
-          var t = e.target && e.target.closest(".testimonial-card--deck");
-          if (!t || t.getAttribute("data-position") !== "front") return;
-          if (e.pointerType === "mouse" && e.button !== 0) return;
-          frontEl = t;
-          startX = e.clientX;
-          activeId = e.pointerId;
-          frontEl.classList.add("is-dragging");
-          try {
-            frontEl.setPointerCapture(e.pointerId);
-          } catch (err) {}
-        },
-        true
-      );
-
-      deck.addEventListener("pointermove", function (e) {
-        if (e.pointerId !== activeId || !frontEl) return;
-        var dx = e.clientX - startX;
-        var elastic = dx > 0 ? dx * 0.22 : dx;
-        frontEl.style.setProperty("--drag-x", elastic + "px");
-      });
-
-      function endDrag(e) {
-        if (e.pointerId !== activeId || !frontEl) return;
-        var released = frontEl;
-        if (startX - e.clientX > 120) {
-          shuffle();
-        } else {
-          released.style.setProperty("--drag-x", "0px");
-        }
-        released.classList.remove("is-dragging");
-        try {
-          released.releasePointerCapture(e.pointerId);
-        } catch (err2) {}
-        frontEl = null;
-        activeId = null;
-      }
-
-      deck.addEventListener("pointerup", endDrag);
-      deck.addEventListener("pointercancel", endDrag);
     })();
   </script>
   <script>
