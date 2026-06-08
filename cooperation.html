@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        document.documentElement.setAttribute("data-theme", t === "light" || t === "dark" ? t : "dark");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Условия сотрудничества — Наталья Царицинская</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="legal.css" />
+</head>
+<body>
+  <div class="mesh-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap inner">
+      <a class="logo" href="index.html">Наталья <span>Царицинская</span></a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="true">☀️ Светлая</button>
+    </div>
+  </header>
+
+  <main class="legal-main">
+    <article class="legal-doc wrap">
+      <a class="legal-back" href="index.html">← На главную</a>
+      <p class="legal-label">Сотрудничество</p>
+      <h1>Условия сотрудничества</h1>
+      <p class="legal-updated">Действует с 8 июня 2026 г.</p>
+
+      <p>
+        Этот текст помогает понять, как обычно строится работа над digital-проектами с Натальей Царицинской. Это
+        <strong>не публичная оферта</strong>: на сайте нет онлайн-оплаты, автоматического заказа услуг и фиксированных
+        тарифов в корзине. Каждый проект обсуждается индивидуально.
+      </p>
+
+      <h2>Как проходит работа</h2>
+      <ol>
+        <li>
+          <strong>Заявка.</strong> Вы пишете через форму на сайте, Telegram, MAX или другой указанный канал. Кратко
+          описываете задачу: сайт, бот, AI-ассистент, мини-сервис, витрина и т. п.
+        </li>
+        <li>
+          <strong>Обсуждение задачи.</strong> Уточняем цель, аудиторию, примеры, сроки и что важно именно для вашего
+          бизнеса. При необходимости смотрим референсы и ваши материалы.
+        </li>
+        <li>
+          <strong>Согласование стоимости и сроков.</strong> Я предлагаю понятный объём работ, ориентировочные сроки и
+          стоимость. Всё фиксируем в переписке или коротком описании задачи — без сложных юридических формулировок.
+        </li>
+        <li>
+          <strong>Создание проекта.</strong> Делаю прототип, лендинг, бота, калькулятор или другой инструмент. Держу в
+          курсе ключевые этапы, показываю промежуточный результат.
+        </li>
+        <li>
+          <strong>Правки.</strong> В согласованном объёме вношу уточнения по текстам, логике и внешнему виду. Крупные
+          новые функции обсуждаем отдельно.
+        </li>
+        <li>
+          <strong>Передача результата.</strong> Передаю готовый проект: ссылку на сайт, доступ к репозиторию, инструкцию
+          по использованию — в зависимости от формата работы.
+        </li>
+      </ol>
+
+      <h2>Оплата</h2>
+      <p>
+        Оплата и способ расчёта согласуются лично после обсуждения задачи. На сайте-портфолио нет кнопки «купить услугу»
+        и автоматического списания средств.
+      </p>
+
+      <h2>Коммуникация</h2>
+      <p>
+        Удобнее всего — Telegram <a href="https://t.me/caricinskaya" target="_blank" rel="noopener noreferrer">@caricinskaya</a>
+        или MAX. Отвечаю в рабочее время, стараюсь давать понятные ответы без лишней терминологии.
+      </p>
+
+      <h2>Что я делаю</h2>
+      <ul>
+        <li>AI-ассистенты, боты и мини-сервисы для бизнеса;</li>
+        <li>сайты, лендинги, витрины и brand-игры;</li>
+        <li>калькуляторы, квизы, digital-инструменты под конкретную задачу;</li>
+        <li>контент и визуал в едином стиле бренда.</li>
+      </ul>
+
+      <h2>Конфиденциальность</h2>
+      <p>
+        Данные из заявки используются только для связи и работы над проектом — см.
+        <a href="privacy.html">Политику конфиденциальности</a> и
+        <a href="consent.html">Согласие на обработку персональных данных</a>.
+      </p>
+
+      <p class="legal-note">
+        Готовы обсудить задачу? Перейдите на <a href="index.html#contacts">страницу контактов</a> или напишите в
+        мессенджер.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p><strong>Наталья Царицинская</strong> · vibe-coder · AI для малого бизнеса</p>
+    <nav class="site-footer__legal" aria-label="Юридическая информация">
+      <a href="privacy.html">Политика конфиденциальности</a>
+      <a href="consent.html">Согласие на обработку персональных данных</a>
+      <a href="cooperation.html">Условия сотрудничества</a>
+    </nav>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("themeToggle");
+      if (!btn) return;
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+        btn.textContent = theme === "dark" ? "☀️ Светлая" : "🌙 Тёмная";
+      }
+      btn.addEventListener("click", function () {
+        var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        applyTheme(next);
+        try {
+          localStorage.setItem("portfolio-theme", next);
+        } catch (e) {}
+      });
+    })();
+  </script>
+</body>
+</html>

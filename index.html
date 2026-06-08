@@ -90,6 +90,7 @@
       section[data-scroll] .help-grid,
       section[data-scroll] .help-intro,
       section[data-scroll] .tool-pill,
+      section[data-scroll] .contact-form,
       section[data-scroll] .contact-links a {
         opacity: 1 !important;
         transform: none !important;
@@ -1419,6 +1420,92 @@
       color: var(--text);
     }
 
+    .contacts-layout {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .contacts-layout {
+        grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+        align-items: start;
+        gap: 2.5rem;
+      }
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 36rem;
+    }
+
+    .contact-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .contact-form__field label {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    .contact-form__field label span {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .contact-form__field input,
+    .contact-form__field textarea {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-form__field input:focus,
+    .contact-form__field textarea:focus {
+      outline: none;
+      border-color: color-mix(in srgb, var(--accent-terracotta) 45%, var(--border));
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-terracotta) 12%, transparent);
+    }
+
+    .contact-form__field textarea {
+      min-height: 7rem;
+      resize: vertical;
+    }
+
+    .contact-form__consent {
+      margin: 0.15rem 0 0;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .contact-form__consent a {
+      color: var(--accent-terracotta);
+      text-decoration-thickness: 1px;
+    }
+
+    .contact-form__consent a:hover {
+      color: var(--accent-caramel);
+    }
+
+    .contact-form .btn-primary {
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+
     .site-footer {
       padding: 1.5rem 0 2.5rem;
       text-align: center;
@@ -1439,6 +1526,27 @@
       font-family: var(--font-heading);
       color: var(--text);
       font-weight: 600;
+    }
+
+    .site-footer__legal {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.45rem 1.15rem;
+      margin-top: 1rem;
+    }
+
+    .site-footer__legal a {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .site-footer__legal a:hover {
+      color: var(--accent-terracotta);
     }
 
     /* Появление при скролле (Intersection Observer → класс .is-inview) */
@@ -1691,13 +1799,15 @@
     }
 
     section#contacts:not(.is-inview) > .section-h2,
-    section#contacts:not(.is-inview) .contact-links a {
+    section#contacts:not(.is-inview) .contact-links a,
+    section#contacts:not(.is-inview) .contact-form {
       opacity: 0;
       transform: translateX(-16px);
     }
 
     section#contacts > .section-h2,
-    section#contacts .contact-links a {
+    section#contacts .contact-links a,
+    section#contacts .contact-form {
       transition:
         opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1719,8 +1829,13 @@
       transition-delay: 0.22s;
     }
 
+    section#contacts.is-inview .contact-form {
+      transition-delay: 0.28s;
+    }
+
     section#contacts.is-inview > .section-h2,
-    section#contacts.is-inview .contact-links a {
+    section#contacts.is-inview .contact-links a,
+    section#contacts.is-inview .contact-form {
       opacity: 1;
       transform: none;
     }
@@ -2180,23 +2295,61 @@
         <span class="section-label">Связь</span>
         <span class="section-h2__title">Контакты</span>
       </h2>
-      <nav class="contact-links" aria-label="Контакты и соцсети">
-        <a href="https://t.me/caricinskaya" target="_blank" rel="noopener noreferrer"
-          >Telegram · @caricinskaya <span>↗</span></a
-        >
-        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
-        <a
-          href="https://max.ru/u/f9LHodD0cOKz3U-pQtJec4NJf3SiVp8-0WgUse43XwuRd_O0AcrJosunyqw"
-          target="_blank"
-          rel="noopener noreferrer"
-          >MAX <span>↗</span></a
-        >
-      </nav>
+      <div class="contacts-layout">
+        <nav class="contact-links" aria-label="Контакты и соцсети">
+          <a href="https://t.me/caricinskaya" target="_blank" rel="noopener noreferrer"
+            >Telegram · @caricinskaya <span>↗</span></a
+          >
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+          <a
+            href="https://max.ru/u/f9LHodD0cOKz3U-pQtJec4NJf3SiVp8-0WgUse43XwuRd_O0AcrJosunyqw"
+            target="_blank"
+            rel="noopener noreferrer"
+            >MAX <span>↗</span></a
+          >
+        </nav>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="contact-form__field">
+            <label for="contactName">Имя</label>
+            <input type="text" id="contactName" name="name" autocomplete="name" required />
+          </div>
+          <div class="contact-form__field">
+            <label for="contactChannel">Контакт для связи</label>
+            <input
+              type="text"
+              id="contactChannel"
+              name="contact"
+              placeholder="Telegram, email или телефон"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <div class="contact-form__field">
+            <label for="contactMessage">Сообщение</label>
+            <textarea id="contactMessage" name="message" required></textarea>
+          </div>
+          <div class="contact-form__field">
+            <label for="contactProject">Ссылка на проект <span>(необязательно)</span></label>
+            <input type="url" id="contactProject" name="project" placeholder="https://" />
+          </div>
+          <p class="contact-form__consent">
+            Нажимая кнопку, вы соглашаетесь с
+            <a href="consent.html">обработкой персональных данных</a> и принимаете
+            <a href="privacy.html">Политику конфиденциальности</a>.
+          </p>
+          <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        </form>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer wrap" id="siteFooter">
     <p><strong>Наталья Царицинская</strong> · vibe-coder · AI для малого бизнеса</p>
+    <nav class="site-footer__legal" aria-label="Юридическая информация">
+      <a href="privacy.html">Политика конфиденциальности</a>
+      <a href="consent.html">Согласие на обработку персональных данных</a>
+      <a href="cooperation.html">Условия сотрудничества</a>
+    </nav>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -2376,6 +2529,57 @@
         io.observe(el);
       });
       if (footer) io.observe(footer);
+    })();
+
+    (function () {
+      var form = document.getElementById("contactForm");
+      if (!form) return;
+
+      var TELEGRAM_URL = "https://t.me/caricinskaya";
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var nameEl = document.getElementById("contactName");
+        var channelEl = document.getElementById("contactChannel");
+        var messageEl = document.getElementById("contactMessage");
+        var projectEl = document.getElementById("contactProject");
+
+        if (!nameEl || !channelEl || !messageEl) return;
+
+        var name = nameEl.value.trim();
+        var channel = channelEl.value.trim();
+        var message = messageEl.value.trim();
+        var project = projectEl ? projectEl.value.trim() : "";
+
+        if (!name || !channel || !message) {
+          form.reportValidity();
+          return;
+        }
+
+        var lines = [
+          "Заявка с сайта-портфолио",
+          "",
+          "Имя: " + name,
+          "Контакт: " + channel,
+          "",
+          "Сообщение:",
+          message
+        ];
+
+        if (project) {
+          lines.push("", "Ссылка на проект: " + project);
+        }
+
+        var text = lines.join("\n");
+        var shareUrl = TELEGRAM_URL + "?text=" + encodeURIComponent(text);
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).catch(function () {});
+        }
+
+        window.open(shareUrl, "_blank", "noopener,noreferrer");
+      });
     })();
   </script>
   <script>

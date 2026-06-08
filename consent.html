@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        document.documentElement.setAttribute("data-theme", t === "light" || t === "dark" ? t : "dark");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Согласие на обработку персональных данных — Наталья Царицинская</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="legal.css" />
+</head>
+<body>
+  <div class="mesh-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap inner">
+      <a class="logo" href="index.html">Наталья <span>Царицинская</span></a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="true">☀️ Светлая</button>
+    </div>
+  </header>
+
+  <main class="legal-main">
+    <article class="legal-doc wrap">
+      <a class="legal-back" href="index.html">← На главную</a>
+      <p class="legal-label">Документ</p>
+      <h1>Согласие на обработку персональных данных</h1>
+      <p class="legal-updated">Действует с 8 июня 2026 г.</p>
+
+      <p>
+        Отправляя заявку через форму на сайте, пишу в мессенджер или иным способом оставляя контактные данные, вы
+        даёте согласие Наталье Царицинской на обработку персональных данных на условиях ниже.
+      </p>
+
+      <h2>1. Какие данные вы передаёте</h2>
+      <ul>
+        <li>имя;</li>
+        <li>контакт для связи (Telegram, email, телефон и т. п.);</li>
+        <li>текст сообщения о задаче;</li>
+        <li>ссылку на проект или пример — если вы её указали.</li>
+      </ul>
+
+      <h2>2. Для чего используются данные</h2>
+      <p>Только для деловых целей, связанных с вашим обращением:</p>
+      <ul>
+        <li>связаться с вами и ответить на вопрос;</li>
+        <li>обсудить задачу, формат и детали проекта;</li>
+        <li>подготовить предложение по срокам, объёму и стоимости;</li>
+        <li>вести переписку в рамках согласованной работы.</li>
+      </ul>
+      <p>
+        Данные <strong>не</strong> используются для массовых рассылок, передачи рекламным базам или целей, не связанных
+        с вашим запросом.
+      </p>
+
+      <h2>3. Действия с данными</h2>
+      <p>Сбор, запись, хранение, уточнение, использование, удаление — только в объёме, нужном для связи и работы над проектом.</p>
+
+      <h2>4. Срок действия согласия</h2>
+      <p>
+        Согласие действует до завершения переписки по вашему обращению или до момента, когда вы отзовёте его. После
+        отзыва данные удаляются из рабочей переписки, если их хранение больше не требуется по закону или договорённости.
+      </p>
+
+      <h2>5. Как отозвать согласие</h2>
+      <p>
+        Напишите в Telegram <a href="https://t.me/caricinskaya" target="_blank" rel="noopener noreferrer">@caricinskaya</a>
+        или в MAX с просьбой удалить ваши данные. Я подтвержу получение запроса в разумный срок.
+      </p>
+
+      <h2>6. Дополнительно</h2>
+      <p>
+        Подробнее о хранении и защите данных — в
+        <a href="privacy.html">Политике конфиденциальности</a>. Порядок работы над проектами — в
+        <a href="cooperation.html">Условиях сотрудничества</a>.
+      </p>
+
+      <p class="legal-note">
+        Нажимая кнопку отправки формы на сайте или отправляя сообщение в мессенджер, вы подтверждаете, что ознакомились
+        с этим текстом и согласны на обработку указанных данных.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p><strong>Наталья Царицинская</strong> · vibe-coder · AI для малого бизнеса</p>
+    <nav class="site-footer__legal" aria-label="Юридическая информация">
+      <a href="privacy.html">Политика конфиденциальности</a>
+      <a href="consent.html">Согласие на обработку персональных данных</a>
+      <a href="cooperation.html">Условия сотрудничества</a>
+    </nav>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("themeToggle");
+      if (!btn) return;
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+        btn.textContent = theme === "dark" ? "☀️ Светлая" : "🌙 Тёмная";
+      }
+      btn.addEventListener("click", function () {
+        var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        applyTheme(next);
+        try {
+          localStorage.setItem("portfolio-theme", next);
+        } catch (e) {}
+      });
+    })();
+  </script>
+</body>
+</html>
